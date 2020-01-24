@@ -1,0 +1,81 @@
+.nav-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 48px;
+	background-color: #a22041;
+
+	.navbar-left {
+		display: flex;
+
+		.home,
+		.board-list {
+			margin-left: 8px;
+			border-radius: 4px;
+			background: rgba($color: #fff, $alpha: 0.4);
+
+			&:hover {
+				background: rgba($color: #fff, $alpha: 0.3);
+			}
+
+			&.home {
+				text-align: center;
+				width: 32px;
+				height: 32px;
+				line-height: 32px;
+				font-size: 22px;
+				color: #fff;
+			}
+
+			&.board-list {
+				cursor: pointer;
+				text-align: center;
+				line-height: 32px;
+				width: 150px;
+				height: 32px;
+				font-size: 18px;
+				color: #fff;
+
+				span {
+					margin-left: 6px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+
+	.navbar-brand {
+		opacity: 0.4;
+		text-decoration: none;
+		font-size: 24px;
+		font-weight: bold;
+		color: #ffffff;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	.navbar-right {
+		display: flex;
+
+		.user-edit {
+			margin-right: 8px;
+			border-radius: 4px;
+			background: rgba($color: #fff, $alpha: 0.4);
+
+			&:hover {
+				background: rgba($color: #fff, $alpha: 0.3);
+      }
+
+      .user-edit-icon {
+        text-align: center;
+				width: 32px;
+				height: 32px;
+				line-height: 32px;
+				font-size: 22px;
+				color: #fff;
+      }
+		}
+	}
+}
