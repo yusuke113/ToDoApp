@@ -5,38 +5,37 @@
 .sidebar-boards-list {
 	display: flex;
 	justify-content: center;
-  margin-top: 40px;
-  
-  .fa {
-    font-size: 18px;
-  }
+	margin-top: 40px;
+
+	.fa {
+		font-size: 18px;
+	}
 
 	.sidebar {
 		width: 180px;
 
 		.sidebar-nav {
 			padding-left: 10px;
-      margin: 0;
-      
-      .home {
-        text-decoration: none;
+			margin: 0;
 
-        .fa-icon {
-          margin-left: 10px;
-        }
-      }
+			.home {
+				text-decoration: none;
+
+				.fa-icon {
+					margin-left: 10px;
+				}
+			}
 			.sidebar-nav-menu {
-        text-align: left;
+				text-align: left;
 				width: 200px;
 				height: 32px;
 				background: rgba(240, 199, 255, 0.4);
-        font-size: 18px;
-        font-weight: bold;
+				font-size: 18px;
+				font-weight: bold;
 				border-radius: 4px;
-        line-height: 32px;
-        color: #907799;
+				line-height: 32px;
+				color: #907799;
 
-        
 				span {
 					margin-left: 8px;
 				}
@@ -50,17 +49,17 @@
 
 		.boards-page-section {
 			font-weight: bold;
-      color: #000;
-      
-      span {
-        margin-left: 6px;
-      }
+			color: #000;
+
+			span {
+				margin-left: 6px;
+			}
 		}
 
 		.boards-list {
 			display: flex;
-      flex-wrap: wrap;
-      padding: 0;
+			flex-wrap: wrap;
+			padding: 0;
 			margin-top: 20px;
 			margin-bottom: 48px;
 
@@ -79,13 +78,14 @@
 
 					.board-card-fade {
 						display: none;
-            background-color: rgba(0, 0, 0, 0.15);
-            margin: 0;
+						background-color: rgba(0, 0, 0, 0.15);
+						margin: 0;
 						bottom: 0;
 						left: 0;
 						position: absolute;
 						right: 0;
-						top: 0;
+            top: 0;
+            border-radius: 5px;
 					}
 
 					&:hover {
@@ -103,10 +103,46 @@
 				}
 			}
 		}
+
+		.new-board-card {
+			cursor: pointer;
+			width: 190px;
+			height: 100px;
+			margin-right: 15px;
+			margin-bottom: 15px;
+			position: relative;
+			background: #f2f2f2;
+			border-radius: 5px;
+
+			.new-board-card-fade {
+				display: none;
+				background-color: rgba(0, 0, 0, 0.15);
+				margin: 0;
+				bottom: 0;
+				left: 0;
+				position: absolute;
+				right: 0;
+        top: 0;
+        border-radius: 5px;
+			}
+
+			&:hover {
+				.new-board-card-fade {
+					display: inline-block;
+				}
+			}
+
+			.new-board-create {
+        margin: 0;
+				text-align: center;
+        font-weight: normal;
+        line-height: 100px;
+			}
+		}
 	}
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1068px) {
 	.sidebar {
 		display: none;
 	}
