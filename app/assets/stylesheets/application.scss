@@ -12,10 +12,16 @@
  *
  *= require_tree .
  *= require_self
- *= require font-awesome
  */
- @import "header";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'header';
 
- body {
-   margin: 0;
- }
+body {
+	margin: 0;
+}
+
+li {
+  list-style: none;
+}
+

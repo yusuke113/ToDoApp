@@ -1,2 +1,51 @@
-<h1>Boards#index</h1>
-<p>Find me in app/views/boards/index.html.erb</p>
+<div class="sidebar-boards-list">
+  <div class="sidebar">
+    <nav class="home-left-sidebar">
+      <ul class="sidebar-nav">
+        <li>
+          <%= link_to root_path, method: :get, class: 'home' do %>
+          <div class="sidebar-nav-menu">
+            <%= icon 'fa', 'list-ul', class: "fa fa-icon"%><span>ボード</span>
+          </div>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="all-boards">
+    <div class="boards-page-section">
+      <%= icon 'far', 'clock', class: 'fa' %><span>最近の表示</span>
+      <div>
+        <ul class="boards-list">
+          <% (1..4).each do |board| %>
+          <li>
+            <%= link_to root_path, method: :get, class: 'board-cards-list' do %>
+            <div class="board-card">
+              <span class="board-card-fade"></span>
+              <p class="board-card-title"><%= "TEST#{board}" %></p>
+            </div>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="boards-page-section">
+      <%= icon 'far', 'user', class: 'fa' %><span>ユーザーボード</span>
+      <div>
+        <ul class="boards-list">
+          <% (1..4).each do |board| %>
+          <li>
+            <%= link_to root_path, method: :get, class: 'board-cards-list' do %>
+            <div class="board-card">
+              <span class="board-card-fade"></span>
+              <p class="board-card-title"><%= "TEST#{board}" %></p>
+            </div>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
