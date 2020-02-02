@@ -1,0 +1,12 @@
+<div id="fade" class="screen-fade hidden">
+  <div id="window-overlay"></div>
+  <div id="new_board_form" class="board-create-form hidden">
+    <%= form_with model: @board do |f| %>
+    <div class="form-group board-title-form">
+      <%= f.text_field :title, id: 'board-title-field', class: 'form-control', autocomplete: 'off', placeholder: 'ボードタイトルを追加' %>
+      <div id="cancel"><span>×</span></div>
+    </div>
+    <%= f.submit 'ボードを作成', id: 'board-create-btn', class: 'disabled' %>
+    <% end %>
+  </div>
+</div>

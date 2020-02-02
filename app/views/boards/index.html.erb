@@ -1,3 +1,4 @@
+<%= render partial: 'new' %>
 <div class="sidebar-boards-list">
   <div class="sidebar">
     <nav class="home-left-sidebar">
@@ -46,7 +47,7 @@
             </li>
             <% end %>
             <li>
-              <div class="new-board-card">
+              <div id="new-board-create" class="new-board-card">
                 <span class="new-board-card-fade"></span>
                 <p class="new-board-create">新しいボードを作成</p>
               </div>
@@ -57,3 +58,4 @@
     </div>
   </div>
 </div>
+<%= javascript_pack_tag 'boards/new' %>
