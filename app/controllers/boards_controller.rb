@@ -5,18 +5,14 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
 
-  def new
-
-  end
-
   def create
-    @board = Board.new(board_params)
-    if @board.save
-      flash[:notice] = "「#{@board.title}」の掲示板を作成しました"
-      redirect_to board
+    board = Board.new(board_params)
+    if board.save
+      flash[:notice] = "「#{board.title}」のボードを作成しました"
+      redirect_to root_path
     else
-      redirect_to new_board_path, flash: {
-        board: @board,
+      render 'boards/index', flash: {
+        board: board,
         error_messages: board.errors.full_messages
       }
     end

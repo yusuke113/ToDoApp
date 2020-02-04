@@ -19,12 +19,12 @@
         <%= icon 'far', 'clock', class: 'fa' %><span>最近の表示</span>
         <div>
           <ul class="boards-list">
-            <% (1..4).each do |board| %>
+            <% @boards.each do |board| %>
             <li>
               <%= link_to root_path, method: :get, class: 'board-cards-list' do %>
               <div class="board-card">
                 <span class="board-card-fade"></span>
-                <p class="board-card-title"><%= "TEST#{board}" %></p>
+                <p class="board-card-title"><%= board.title %></p>
               </div>
               <% end %>
             </li>
@@ -36,12 +36,12 @@
         <%= icon 'far', 'user', class: 'fa' %><span>ユーザーボード</span>
         <div>
           <ul class="boards-list">
-            <% (1..4).each do |board| %>
+            <% @boards.each do |board| %>
             <li>
               <%= link_to root_path, method: :get, class: 'board-cards-list' do %>
               <div class="board-card">
                 <span class="board-card-fade"></span>
-                <p class="board-card-title"><%= "TEST#{board}" %></p>
+                <p class="board-card-title"><%= board.title %></p>
               </div>
               <% end %>
             </li>
