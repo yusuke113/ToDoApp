@@ -88,8 +88,9 @@
 
 		// カード追加ボタンを決してフォームを表示
 		$('.card-composer').addClass('hidden');
+		$('.open-card-composer').parent().removeClass('hidden');
 		card_composer.removeClass('hidden');
-		$(this).addClass('hidden');
+		$(this).parent().addClass('hidden');
 		//
 
 		// カードnameに入力があれば<button>を<primary>にする
@@ -109,9 +110,10 @@
 		$(document).on('click touchend', function(event) {
 			if (
 				!$(event.target).closest(card_composer).length &&
-				!$(event.target).closest('.open-card-composer').length
+				!$(event.target).closest('.card-composer-container').length
 			) {
 				card_composer.addClass('hidden');
+				$('.open-card-composer').parent().removeClass('hidden');
 			}
 		});
 		//
