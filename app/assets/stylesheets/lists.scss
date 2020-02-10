@@ -1,0 +1,285 @@
+// Place all the styles related to the lists controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.background-cover {
+	background-color: #dd5d72;
+	position: relative;
+	height: 100%;
+	z-index: 1;
+	margin-top: -48px;
+	background-size: cover;
+	flex-direction: column;
+}
+
+.board-wrapper {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 48px;
+	bottom: 0;
+}
+
+.board-canvas {
+	position: relative;
+	height: 100%;
+	flex-grow: 1;
+}
+
+#board {
+	position: absolute;
+	display: flex;
+	user-select: none;
+	margin: 48px 0 8px 0;
+	padding-bottom: 8px;
+	user-select: none;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	// =======スクロールバーのスタイル=======
+	&::-webkit-scrollbar {
+		display: block;
+		height: 12px;
+		width: 12px;
+	}
+	&::-webkit-scrollbar-track {
+		background: #a22041;
+		border: none;
+		border-radius: 10px;
+		box-shadow: inset 0 0 2px #777;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: rgba(255, 255, 255, 0.4);
+		border-radius: 10px;
+		box-shadow: none;
+	}
+}
+
+.list-wrapper {
+	width: 270px;
+	height: 100%;
+	box-sizing: border-box;
+	margin: 0 5px;
+	min-width: 270px;
+	&:first-child {
+		margin-left: 10px;
+	}
+}
+
+.list {
+	height: auto;
+	background-color: #ebecf0;
+	box-shadow: 2px 2px 4px rgba(9, 30, 66, 0.25);
+	border-radius: 5px;
+	white-space: normal;
+
+	.list-header {
+		flex: 0 0 auto;
+		padding: 10px 36px 0 8px;
+		position: relative;
+		min-height: 20px;
+	}
+
+	.list-header-name {
+		height: 20px;
+		background: transparent;
+		box-shadow: none;
+		overflow-wrap: break-word;
+		overflow: hidden;
+		outline: 0;
+		border: none;
+		border-radius: 3px;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 18px;
+		padding: 4px 8px;
+		margin: -4px 0;
+		resize: none;
+		min-height: 20px;
+		max-height: 256px;
+
+		&:focus {
+			background: #fff;
+			border: none;
+			box-shadow: inset 0 0 0 2px #0079bf;
+		}
+	}
+
+	.list-cards {
+		flex: 1 1 auto;
+		margin-bottom: 0;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		margin: 0 4px;
+		padding: 0 4px;
+		z-index: 1;
+		min-height: 0;
+	}
+
+	.list-card-details {
+		cursor: pointer;
+		overflow: hidden;
+		background: #ffffff;
+		box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+		border-radius: 5px;
+		padding: 5px 8px 1px;
+		margin-bottom: 7px;
+		position: relative;
+		z-index: 10;
+
+		&:first-child {
+			margin-top: 5px;
+		}
+
+		&:not(:last-child):hover {
+			background-color: #f4f5f7;
+			border-bottom-color: rgba(9, 30, 66, 0.3);
+		}
+	}
+
+	.list-card-title {
+		clear: both;
+		display: block;
+		margin: 0 0 4px;
+		overflow: hidden;
+		text-decoration: none;
+		word-wrap: break-word;
+		color: #172b4d;
+		font-size: 14px;
+	}
+
+	.card-composer {
+		padding-bottom: 8px;
+
+		.hidden {
+			display: none;
+		}
+	}
+
+	.list-card {
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+		cursor: pointer;
+		display: block;
+		margin-bottom: 8px;
+		max-width: 300px;
+		min-height: 20px;
+		position: relative;
+		text-decoration: none;
+		z-index: 0;
+	}
+
+	.list-card-composer-textarea {
+		background: none;
+		border: none;
+		box-shadow: none;
+		overflow-x: hidden;
+		overflow-y: hidden;
+		overflow-wrap: break-word;
+		resize: none;
+		width: 100%;
+		height: auto;
+		margin-bottom: 4px;
+		line-height: 20px;
+		max-height: 162px;
+		min-height: 54px;
+		overflow-y: auto;
+		padding: 0;
+		font-size: 14px;
+
+		&:focus {
+			background: #fff;
+			border: none;
+			outline: 0;
+		}
+
+		&::placeholder {
+			font-size: 14px;
+		}
+	}
+
+	.card-composer-container {
+		min-height: 38px;
+		max-height: 38px;
+	}
+
+	.open-card-composer {
+		cursor: pointer;
+		border-radius: 3px;
+		color: #5e6c84;
+		display: block;
+		flex: 1 0 auto;
+		margin: 2px 8px 8px 8px;
+		padding: 4px 8px;
+		position: relative;
+		text-decoration: none;
+		user-select: none;
+
+		&:hover {
+			background-color: rgba(9, 30, 66, 0.12);
+			color: #172b4d;
+		}
+
+		.hidden {
+			display: none;
+		}
+	}
+
+	.card-create-btn {
+		box-shadow: none;
+		border: none;
+		cursor: not-allowed;
+		padding: 6px 12px;
+		display: inline-block;
+		line-height: 20px;
+		font-size: 14px;
+		border-radius &.disabled {
+			color: #a5adba;
+			background-color: #f4f5f7;
+		}
+
+		&.primary {
+			background-color: #5aac44;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+}
+
+p {
+	margin: 0;
+}
+
+#new-list-create {
+	cursor: pointer;
+	white-space: nowrap;
+	background-color: hsla(0, 0%, 100%, 0.24);
+	width: 270px;
+	margin: 0 10px 0 5px;
+	border-radius: 3px;
+	height: 32px;
+	padding: 4px;
+	min-width: 270px;
+	transition: background 85ms ease-in, opacity 40ms ease-in,
+		border-color 85ms ease-in;
+
+	&:hover {
+		background-color: hsla(0, 0%, 100%, 0.35);
+	}
+
+	p {
+		margin: 0 0 0 0;
+		padding: 0 10px;
+		line-height: 32px;
+		font-size: 14px;
+		color: #fff;
+	}
+}
+
+// ==================================

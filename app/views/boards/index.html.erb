@@ -21,7 +21,7 @@
           <ul class="boards-list">
             <% @boards.each do |board| %>
             <li>
-              <%= link_to root_path, method: :get, class: 'board-cards-list' do %>
+              <%= link_to board, method: :get, class: 'board-cards-list' do %>
               <div class="board-card">
                 <span class="board-card-fade"></span>
                 <p class="board-card-title"><%= board.title %></p>
@@ -38,7 +38,7 @@
           <ul class="boards-list">
             <% @boards.each do |board| %>
             <li>
-              <%= link_to root_path, method: :get, class: 'board-cards-list' do %>
+              <%= link_to board, method: :get, class: 'board-cards-list' do %>
               <div class="board-card">
                 <span class="board-card-fade"></span>
                 <p class="board-card-title"><%= board.title %></p>

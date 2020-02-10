@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_action :set_target_board, only: %i[show edit update destroy]
 
   def index
     @boards = Board.all
@@ -25,7 +26,6 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find(id: params[:id])
   end
 
   def destroy
@@ -35,6 +35,10 @@ class BoardsController < ApplicationController
 
     def board_params
       params.require(:board).permit(:title)
+    end
+
+    def set_target_board
+      @board = Board.find(params[:id])
     end
 
 

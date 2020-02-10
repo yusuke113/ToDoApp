@@ -19,8 +19,16 @@
 @import 'boards';
 @import 'board_new';
 
+
+html {
+  height: 100%;
+}
+
 body {
-	margin: 0;
+  margin: 0;
+  height: 100%;
+  position: relative;
+  // overflow: hidden;
 }
 
 li {

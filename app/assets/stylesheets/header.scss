@@ -1,9 +1,11 @@
 .nav-bar {
 	display: flex;
+	position: relative;
 	justify-content: space-between;
 	align-items: center;
 	height: 48px;
 	background-color: #a22041;
+	z-index: 100;
 
 	.navbar-left {
 		display: flex;
