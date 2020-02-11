@@ -12,11 +12,14 @@
             <textarea class="list-header-name" name="list-name" spellcheck="false"></textarea>
           </div>
           <div class="list-cards">
-            <% (1..6).each do |n| %>
-            <div class="list-card-details">
-              <span class="list-card-title"><%= "LIST#{n}" %></span>
+
+            <div class="hidden">
+              <% (1..4).each do |n| %>
+              <div class="list-card-details">
+                <span class="list-card-title"><%= "LIST#{n}" %></span>
+              </div>
+              <% end %>
             </div>
-            <% end %>
 
             <div class="card-composer hidden">
               <div class="list-card">
@@ -29,13 +32,14 @@
               <div class="card-create-submit">
                 <input type="submit" name="commit" value="カードを追加" class="card-create-btn disabled"
                   data-disable-with="カードを追加">
+                <span class="cancel">×</span>
               </div>
               </form>
             </div>
 
             <div class="card-composer-container">
               <div class="open-card-composer" href="#">
-                <span class="add-a-card"><%= "#{i} ＋ カードを追加" %></span>
+                <span class="add-a-card">＋ カードを追加</span>
               </div>
             </div>
           </div>
@@ -45,10 +49,26 @@
       </div>
       <% end %>
 
-      <div id="new-list-create">
-        <span class="new-list-card-fade"></span>
-        <p>＋ リストを追加</p>
+      <div class="list-wrapper">
+        <div id="list_add_form" class="list-add-form hidden">
+          <%= form_with model: @list do |f| %>
+          <%= f.text_field :title, id: 'list-name-input', class: 'list-name-input', spellcheck: 'false', autocomplete: 'off', placeholder: 'リストのタイトルを入力…' %>
+          <div class="list-add-controls">
+            <%= f.submit 'リストを作成', id: 'list-add-btn', class: 'disabled' %>
+            <span class="cancel">×</span>
+          </div>
+        </div>
+        <% end %>
+
+        <div id="new-list-create">
+          <span class="placeholder">
+            <span>＋ リストを追加</s>
+            </span>
+        </div>
       </div>
+
     </div>
+
   </div>
-  <%= javascript_pack_tag 'boards/list' %>
+</div>
+<%= javascript_pack_tag 'boards/list' %>

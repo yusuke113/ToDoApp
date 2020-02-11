@@ -74,6 +74,71 @@
 	// =================================================//
 
 	// ================================================//
+	//     リスト追加ボタン[disabled,primary切り替え]      //
+	// ================================================//
+	const new_list_create = $('#new-list-create');
+	const list_add_form = $('#list_add_form');
+	const list_name_input = $('#list-name-input');
+	const btn = $('#list-add-btn');
+	const cancel = $('.cancel');
+
+	new_list_create.click(function() {
+		list_add_form.removeClass('hidden');
+		new_list_create.addClass('hidden');
+		list_name_input.focus();
+	});
+
+	// カードnameに入力があれば<button>を<primary>にする
+	list_name_input.on('input', () => {
+		const textarea_value = list_name_input.val();
+
+		if (textarea_value == '') {
+			btn.removeClass('primary');
+			btn.addClass('disabled');
+		} else {
+			btn.removeClass('disabled');
+			btn.addClass('primary');
+		}
+	});
+
+	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力があればカード追加
+	$(document).on('click touchend', function(event) {
+		if (
+			!$(event.target).closest(list_add_form).length &&
+			!$(event.target).closest(new_list_create).length
+		) {
+			if (list_name_input.val() != '') {
+				console.log('入力あるよ！');
+				list_name_input.val('');
+			}
+			list_add_form.addClass('hidden');
+			new_list_create.removeClass('hidden');
+			btn.removeClass('primary');
+			btn.addClass('disabled');
+		}
+	});
+
+	// キャンセル
+	cancel.click(function() {
+		// リスト追加のフォームを初期値に
+		list_add_form.addClass('hidden');
+		new_list_create.removeClass('hidden');
+		btn.removeClass('primary');
+		btn.addClass('disabled');
+		//
+		// カード追加フォームを初期値に
+		$('.card-composer').addClass('hidden');
+		$('.open-card-composer')
+			.parent()
+			.removeClass('hidden');
+		textdelete();
+		// 
+	});
+	//
+
+	// =================================================//
+
+	// ================================================//
 	//     カード追加ボタン[disabled,primary切り替え]      //
 	// ================================================//
 
@@ -113,6 +178,7 @@
 		});
 		//
 	});
+	// =================================================//
 
 	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力があればカード追加
 	$(document).on('click touchend', function(event) {
@@ -124,14 +190,15 @@
 			$('.open-card-composer')
 				.parent()
 				.removeClass('hidden');
-				textdelete();
-			}
-		});
-		function textdelete() {
-			$('.list-card-composer-textarea').val('');
-			$('.card-create-btn').removeClass('primary');
-			$('.card-create-btn').addClass('disabled');
+			textdelete();
 		}
+	});
+
+	function textdelete() {
+		$('.list-card-composer-textarea').val('');
+		$('.card-create-btn').removeClass('primary');
+		$('.card-create-btn').addClass('disabled');
+	}
 
 	// =================================================//
 }

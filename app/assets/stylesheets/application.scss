@@ -35,16 +35,3 @@ li {
   list-style: none;
 }
 
-input::placeholder {
-  color: rgba($color: #fff, $alpha: 0.6);
-}
-
-/* IE */
-input:-ms-input-placeholder {
-  color: rgba($color: #fff, $alpha: 0.6);
-}
-
-/* Edge */
-input::-ms-input-placeholder {
-  color: rgba($color: #fff, $alpha: 0.6);
-}

@@ -112,6 +112,21 @@
 	}
 }
 
+#board-title-field::placeholder {
+  color: rgba($color: #fff, $alpha: 0.6);
+}
+
+/* IE */
+#board-title-field:-ms-input-placeholder {
+  color: rgba($color: #fff, $alpha: 0.6);
+}
+
+/* Edge */
+#board-title-field::-ms-input-placeholder {
+  color: rgba($color: #fff, $alpha: 0.6);
+}
+
+
 .hidden {
 	display: none;
 }
