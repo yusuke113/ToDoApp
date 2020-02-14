@@ -273,7 +273,7 @@ p {
 
 .list-name-input {
 	display: block;
-	box-shadow: none;
+	box-shadow: inset 0 0 0 2px #0079bf;
 	box-sizing: border-box;
 	overflow-wrap: break-word;
 	overflow: hidden;
@@ -289,7 +289,6 @@ p {
 	max-height: 25;
 
 	&::placeholder {
-		color: transparent;
 		font-size: 14px;
 	}
 
@@ -352,7 +351,6 @@ p {
 	}
 
 	.placeholder {
-		// display: none;
 		padding: 6px 8px;
 		line-height: 20px;
 	}

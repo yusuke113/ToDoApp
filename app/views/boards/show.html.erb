@@ -2,73 +2,10 @@
   <div class="board-wrapper">
     <div class="board-canvas">
     </div>
-
     <div id="board">
-      <% (1..3).each do |i| %>
-
-      <div class="list-wrapper">
-        <div class="list">
-          <div class="list-header">
-            <textarea class="list-header-name" name="list-name" spellcheck="false"></textarea>
-          </div>
-          <div class="list-cards">
-
-            <div class="hidden">
-              <% (1..4).each do |n| %>
-              <div class="list-card-details">
-                <span class="list-card-title"><%= "LIST#{n}" %></span>
-              </div>
-              <% end %>
-            </div>
-
-            <div class="card-composer hidden">
-              <div class="list-card">
-                <form action="/boards/2" accept-charset="UTF-8" data-remote="true" method="post">
-                  <div class="list-card-details">
-                    <textarea name="card-name" class="list-card-composer-textarea" spellcheck="false" dir="auto"
-                      placeholder="このカードにタイトルを入力..."></textarea>
-                  </div>
-              </div>
-              <div class="card-create-submit">
-                <input type="submit" name="commit" value="カードを追加" class="card-create-btn disabled"
-                  data-disable-with="カードを追加">
-                <span class="cancel">×</span>
-              </div>
-              </form>
-            </div>
-
-            <div class="card-composer-container">
-              <div class="open-card-composer" href="#">
-                <span class="add-a-card">＋ カードを追加</span>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-      <% end %>
-
-      <div class="list-wrapper">
-        <div id="list_add_form" class="list-add-form hidden">
-          <%= form_with model: @list do |f| %>
-          <%= f.text_field :title, id: 'list-name-input', class: 'list-name-input', spellcheck: 'false', autocomplete: 'off', placeholder: 'リストのタイトルを入力…' %>
-          <div class="list-add-controls">
-            <%= f.submit 'リストを作成', id: 'list-add-btn', class: 'disabled' %>
-            <span class="cancel">×</span>
-          </div>
-        </div>
-        <% end %>
-
-        <div id="new-list-create">
-          <span class="placeholder">
-            <span>＋ リストを追加</s>
-            </span>
-        </div>
-      </div>
-
+      <%= render @board.lists %>
+      <%= render partial: 'lists/form', locals: { list: @list} %>
     </div>
-
   </div>
 </div>
 <%= javascript_pack_tag 'boards/list' %>

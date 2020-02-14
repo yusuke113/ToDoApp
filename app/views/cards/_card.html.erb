@@ -1,0 +1,32 @@
+<div class="list-cards">
+
+  <% (1..4).each do |n| %>
+  <div class="list-card-details">
+    <span class="list-card-title"><%= "LIST#{n}" %></span>
+  </div>
+  <% end %>
+  <div class="hidden">
+  </div>
+
+  <div class="card-composer hidden">
+    <div class="list-card">
+      <form action="/boards/2" accept-charset="UTF-8" data-remote="true" method="post">
+        <div class="list-card-details">
+          <textarea name="card-name" class="list-card-composer-textarea" spellcheck="false" dir="auto"
+            placeholder="このカードにタイトルを入力..."></textarea>
+        </div>
+    </div>
+    <div class="card-create-submit">
+      <input type="submit" name="commit" value="カードを追加" class="card-create-btn disabled" data-disable-with="カードを追加">
+      <span class="cancel">×</span>
+    </div>
+    </form>
+  </div>
+
+  <div class="card-composer-container">
+    <div class="open-card-composer" href="#">
+      <span class="add-a-card">＋ カードを追加</span>
+    </div>
+  </div>
+
+</div>

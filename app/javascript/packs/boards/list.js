@@ -108,7 +108,6 @@
 			!$(event.target).closest(new_list_create).length
 		) {
 			if (list_name_input.val() != '') {
-				console.log('入力あるよ！');
 				list_name_input.val('');
 			}
 			list_add_form.addClass('hidden');
@@ -132,7 +131,7 @@
 			.parent()
 			.removeClass('hidden');
 		textdelete();
-		// 
+		//
 	});
 	//
 

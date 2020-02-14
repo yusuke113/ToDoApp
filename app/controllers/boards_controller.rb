@@ -26,7 +26,7 @@ class BoardsController < ApplicationController
   end
 
   def show
-    
+    @list = List.new(board_id: @board.id)
   end
 
   def destroy
