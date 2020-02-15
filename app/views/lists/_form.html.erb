@@ -4,7 +4,7 @@
     <%= f.hidden_field :board_id %>
     <%= f.text_field :name, id: 'list-name-input', class: 'list-name-input', spellcheck: 'false', autocomplete: 'off', placeholder: 'リストのタイトルを入力…' %>
     <div class="list-add-controls">
-      <%= f.submit 'リストを作成', id: 'list-add-btn', class: 'disabled' %>
+      <%= f.submit 'リストを作成', id: 'list-add-btn', class: 'disabled', data: { disable_with: '作成中...' } %>
       <span class="cancel">×</span>
     </div>
     <% end %>
