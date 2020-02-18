@@ -8,7 +8,7 @@
 	// ================================================//
 
 	// ================================================//
-	// 					      テキストエリアの設定	      			   //
+	// 					  List[name]テキストエリアの設定	   			   //
 	// ================================================//
 	$('.list-header-name').on('input', () => {
 		// ===========テキストエリアの幅を行数で変える========//
@@ -33,10 +33,8 @@
 
 		target.on('keydown', e => {
 			if (e.keyCode == 13) {
-				target.blur();
-
 				e.preventDefault();
-				console.log(target.val());
+				target.blur();
 			}
 		});
 		// =================================================//
@@ -46,6 +44,7 @@
 		// ===========テキストエリアの幅を行数で変える========//
 
 		// ターゲットのテキストエリア要素を取得する
+		const card_create_btn = $('.card-create-btn');
 		const target = $('.list-card-composer-textarea:focus');
 
 		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
@@ -66,7 +65,7 @@
 		target.on('keydown', e => {
 			if (e.keyCode == 13) {
 				e.preventDefault();
-				target.blur();
+				card_create_btn.click();
 				textdelete();
 			}
 		});
@@ -74,8 +73,9 @@
 	// =================================================//
 
 	// ================================================//
-	//     リスト追加ボタン[disabled,primary切り替え]      //
+	//                   リスト追加機能                    //
 	// ================================================//
+	const list_form = $('.js-list-form');
 	const new_list_create = $('#new-list-create');
 	const list_add_form = $('#list_add_form');
 	const list_name_input = $('#list-name-input');
@@ -135,7 +135,16 @@
 	});
 	//
 
-	// =================================================//
+	// フォームが空欄ならsubmitさせない
+	list_form.submit(function(e) {
+		e.preventDefault();
+
+		if (list_name_input.val() == ''){
+			return false;
+		}
+	});
+	// 
+	
 
 	// ================================================//
 	//     カード追加ボタン[disabled,primary切り替え]      //
@@ -200,4 +209,71 @@
 	}
 
 	// =================================================//
+
+	// ================================================//
+	//                   ボードタイトル変更                 //
+	// ================================================//
+	const board_header_btn = $('.board-header-btn');
+	const board_editing_target = $('.board-editing-target');
+	const js_board_name_input = $('.js-board-name-input');
+
+	// ボードタイトルをクリックしたらタイトル変更フォームを表示
+	board_editing_target.click(function() {
+		js_board_name_input.css('display', 'block');
+		js_board_name_input.focus().select();
+	});
+
+	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力変更あれば更新
+	$(document).on('click touchend', function(event) {
+		if (
+			!$(event.target).closest(board_editing_target).length &&
+			!$(event.target).closest(js_board_name_input).length
+		) {
+			// ボードタイトルの変更を反映
+			input_empty_before_value();
+		}
+	});
+
+	// ========Enter押したらテキストエリアのfocus外す=======//
+
+	js_board_name_input.on('keydown', e => {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			input_empty_before_value();
+		}
+	});
+	// =================================================//
+
+	js_board_name_input.on('focus', function() {
+		console.log(`見本： ${board_header_btn.width()}`);
+		js_board_name_input.css('width', board_editing_target.width());
+		console.log(`実際： ${js_board_name_input.width()}`);
+	});
+
+	// テキストフォームの幅を文字列の長さになるようにする
+	js_board_name_input.on('input', function() {
+		var div = `<span class="js_form_width">${js_board_name_input.val()}</span>`;
+		js_board_name_input.before(div);
+		const form = $('.js_form_width');
+		form.css('padding', '0 12px');
+		const js_form_width = form.width();
+
+		console.log(js_form_width);
+		console.log(`実際： ${js_board_name_input.width()}`);
+
+		js_board_name_input.css('width', `${js_form_width}px`);
+		form.remove();
+	});
+
+	// ========focus外れたとき、valueが['']だったらもとのタイトルに戻す=======//
+	function input_empty_before_value() {
+		if (js_board_name_input.val() != '') {
+			board_editing_target.text(js_board_name_input.val());
+			js_board_name_input.css('display', 'none');
+		} else {
+			js_board_name_input.val(board_editing_target.text());
+			js_board_name_input.css('display', 'none');
+		}
+	}
+	// =================================================
 }

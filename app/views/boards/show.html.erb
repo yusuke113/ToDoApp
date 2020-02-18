@@ -1,5 +1,15 @@
 <div class="background-cover">
   <div class="board-wrapper">
+
+    <div class="board-header">
+      <div class="board-header-btn">
+        <span class="board-editing-target"><%= @board.title %></span>
+        <input class="board-name-input js-board-name-input" aria-label="<%= @board.title %>" spellcheck="false"
+          dir="auto" maxlength="512" value="<%= @board.title %>">
+      </div>
+      <div class="board-warnings hidden"></div>
+    </div>
+
     <div class="board-canvas">
     </div>
     <div id="board">
@@ -9,3 +19,4 @@
   </div>
 </div>
 <%= javascript_pack_tag 'boards/list' %>
+<%= javascript_pack_tag 'boards/card' %>

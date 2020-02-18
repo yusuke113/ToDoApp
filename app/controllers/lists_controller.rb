@@ -5,7 +5,7 @@ class ListsController < ApplicationController
     if list.save
       redirect_to list.board
     else
-      render 'show'
+      render :show, alert: 'error'
     end
   end
 

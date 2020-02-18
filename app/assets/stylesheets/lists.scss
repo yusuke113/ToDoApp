@@ -20,9 +20,88 @@
 	bottom: 0;
 }
 
+.board-header {
+	height: auto;
+	position: relative;
+	padding: 8px 4px 4px 8px;
+	transition: padding 0.1s ease-in;
+	z-index: 10;
+
+	&:after {
+		clear: both;
+		content: '';
+		display: table;
+	}
+
+	.board-header-btn {
+		position: relative;
+		cursor: default;
+		height: 32px;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 32px;
+		border-radius: 3px;
+		box-sizing: border-box;
+		color: #fff;
+		float: left;
+		padding: 0;
+		margin: 0 4px 4px 0;
+		max-width: calc(100% - 24px);
+		background: transparent;
+		text-decoration: none;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		&:hover {
+			background-color: hsla(0, 0%, 100%, 0.32);
+			cursor: pointer;
+		}
+		.board-header-btn.inline-rename-board.is-editing:hover {
+			background: inherit;
+			cursor: default;
+		}
+	}
+
+	.board-editing-target {
+		padding: 0 12px;
+		color: #fff;
+	}
+
+	.board-name-input {
+		display: none;
+		background-color: #fff;
+		border: 0;
+		font-weight: 700;
+		font-size: 18px;
+		height: 32px;
+		margin: 0;
+		padding: 0 12px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		&:focus {
+			background: #fff;
+			border: none;
+			box-shadow: inset 0 0 0 2px #0079bf;
+			outline: 0;
+		}
+
+		&:empty::before {
+			content: attr(aria-label);
+		}
+	}
+}
+
+.js_form_width {
+	font-size: 18px;
+}
+
 .board-canvas {
 	position: relative;
 	height: 100%;
+	margin-top: -48px;
 	flex-grow: 1;
 }
 
@@ -370,8 +449,8 @@ p {
 	padding: 0 5px;
 	color: #5e6c84;
 	font-size: 26px;
-	opacity: .8;
-	
+	opacity: 0.8;
+
 	&:hover {
 		opacity: 1;
 	}

@@ -1,10 +1,10 @@
-<div class="list-wrapper">
+<div class="list-wrapper js-list-create-form">
   <div id="list_add_form" class="list-add-form hidden">
-    <%= form_with model: list do |f| %>
+    <%= form_with model: list, html: { class: 'list-form js-list-form' } do |f| %>
     <%= f.hidden_field :board_id %>
     <%= f.text_field :name, id: 'list-name-input', class: 'list-name-input', spellcheck: 'false', autocomplete: 'off', placeholder: 'リストのタイトルを入力…' %>
     <div class="list-add-controls">
-      <%= f.submit 'リストを作成', id: 'list-add-btn', class: 'disabled', data: { disable_with: '作成中...' } %>
+      <%= f.submit 'リストを作成', id: 'list-add-btn', class: 'disabled' %>
       <span class="cancel">×</span>
     </div>
     <% end %>

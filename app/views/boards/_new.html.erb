@@ -6,7 +6,7 @@
       <%= f.text_field :title, id: 'board-title-field', class: 'form-control', autocomplete: 'off', placeholder: 'ボードタイトルを追加' %>
       <div id="cancel"><span>×</span></div>
     </div>
-    <%= f.submit 'ボードを作成', id: 'board-create-btn', class: 'disabled' %>
+    <%= f.submit 'ボードを作成', id: 'board-create-btn', class: 'disabled', data: { disable_with: '作成中...' } %>
     <% end %>
   </div>
 </div>

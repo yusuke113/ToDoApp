@@ -23,8 +23,16 @@
             <li>
               <%= link_to board, method: :get, class: 'board-cards-list' do %>
               <div class="board-card">
-                <span class="board-card-fade"></span>
-                <p class="board-card-title"><%= board.title %></p>
+                <span class="board-card-fade">
+                  <div class="board-tile-details">
+                    <p class="board-card-title"><%= board.title %></p>
+                    <div class="board-tile-details-sub-container">
+                      <div class="board-tile-options">
+                        <%= icon 'far', 'trash-alt', class: "far fa-icon fa-trash"%>
+                      </div>
+                    </div>
+                  </div>
+                </span>
               </div>
               <% end %>
             </li>
@@ -40,8 +48,16 @@
             <li>
               <%= link_to board, method: :get, class: 'board-cards-list' do %>
               <div class="board-card">
-                <span class="board-card-fade"></span>
-                <p class="board-card-title"><%= board.title %></p>
+                <span class="board-card-fade">
+                  <div class="board-tile-details">
+                    <p class="board-card-title"><%= board.title %></p>
+                    <div class="board-tile-details-sub-container">
+                      <div class="board-tile-options">
+                        <%= icon 'far', 'trash-alt', class: "far fa-icon fa-trash"%>
+                      </div>
+                    </div>
+                  </div>
+                </span>
               </div>
               <% end %>
             </li>
@@ -58,4 +74,5 @@
     </div>
   </div>
 </div>
-<%= javascript_pack_tag 'boards/new' %>
+<%= javascript_pack_tag 'boards/board' %>
+<%= javascript_pack_tag 'boards/board_new' %>

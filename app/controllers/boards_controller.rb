@@ -19,14 +19,11 @@ class BoardsController < ApplicationController
     end
   end
 
-  def edit
+  def show
+    @list = List.new(board_id: @board.id)
   end
 
   def update
-  end
-
-  def show
-    @list = List.new(board_id: @board.id)
   end
 
   def destroy

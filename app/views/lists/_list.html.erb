@@ -3,6 +3,8 @@
     <div class="list-header">
       <textarea class="list-header-name" name="list-name" spellcheck="false"><%= list.name %></textarea>
     </div>
-    <%= render partial: 'cards/card' %>
+    <div class="list-cards">
+      <%= render partial: 'cards/card', locals: {list: list, cards: list.cards} %>
+    </div>
   </div>
 </div>
