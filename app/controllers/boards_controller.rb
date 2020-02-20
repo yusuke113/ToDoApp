@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
     board = Board.new(board_params)
     if board.save
       flash[:notice] = "「#{board.title}」のボードを作成しました"
-      redirect_to root_path
+      redirect_to board
     else
       render 'boards/index', flash: {
         board: board,

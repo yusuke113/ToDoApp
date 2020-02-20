@@ -9,7 +9,7 @@ def create
   if card.save
     redirect_to card.list.board
   else
-    redirect_to card.list.boards, alert: 'error'
+    redirect_to card.list.board, alert: 'error'
   end
 end
 

@@ -139,12 +139,11 @@
 	list_form.submit(function(e) {
 		e.preventDefault();
 
-		if (list_name_input.val() == ''){
+		if (list_name_input.val() == '') {
 			return false;
 		}
 	});
-	// 
-	
+	//
 
 	// ================================================//
 	//     カード追加ボタン[disabled,primary切り替え]      //
@@ -152,6 +151,7 @@
 
 	$('.open-card-composer').click(function() {
 		const open_card_composer = $(this);
+		const js_card_form = open_card_composer.children('.js-card-form');
 		const list_cards = $(this).closest('.list-cards');
 		const card_composer = list_cards.find('.card-composer');
 		const list_card_composer_textarea = card_composer.find(
@@ -170,7 +170,7 @@
 		$(this)
 			.parent()
 			.addClass('hidden');
-		$('.list-card-composer-textarea').val('');
+		list_card_composer_textarea.focus().val('');
 		//
 
 		// カードnameに入力があれば<button>を<primary>にする
@@ -185,6 +185,25 @@
 			}
 		});
 		//
+
+		js_card_form.submit(function(e) {
+			e.preventDefault();
+
+			if (list_card_composer_textarea.val() == '') {
+				return false;
+			}
+		});
+		//
+		// 改行不可
+		list_card_composer_textarea.on('keydown', e => {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				console.log('www');
+				if (list_card_composer_textarea.val() == ''){
+					return false;
+				}
+			}
+		});
 	});
 	// =================================================//
 

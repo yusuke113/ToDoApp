@@ -11,6 +11,7 @@
 	new_board.click(function() {
 		fade.removeClass('hidden');
 		new_board_form.removeClass('hidden');
+		board_title_field.focus();
 	});
 
 	// ボードタイトル記入欄以外をクリックするとフォームをhiddenする
