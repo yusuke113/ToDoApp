@@ -1,0 +1,14 @@
+<div class="board-header">
+  <div class="board-header-btn">
+    <span class="board-editing-target"><%= @board.title %></span>
+    <input class="board-name-input js-board-name-input" aria-label="<%= @board.title %>" spellcheck="false" dir="auto"
+      maxlength="512" value="<%= @board.title %>">
+  </div>
+  <div class="board-warnings hidden"></div>
+  <div class="board-header-btns mod-right">
+    <div class="board-header-btn mod-show-menu js-show-sidebar">
+      <%= icon 'fa', 'ellipsis-h', class: 'icon-sm board-header-btn-icon' %><span
+        class="board-header-btn-text">ボードメニューを表示</span>
+    </div>
+  </div>
+</div>

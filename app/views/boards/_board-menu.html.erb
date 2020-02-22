@@ -1,0 +1,24 @@
+<div class="board-menu js-fill-board-menu hidden">
+  <div class="board-menu-container">
+    <div class="board-menu-tab-content">
+      <div class="board-menu-header">
+        <div class="board-menu-header-content">
+          <h3 class="board-menu-header-title">ボードメニュー</h3>
+          <span class="board-menu-header-close-button">×</span>
+        </div>
+        <hr class="board-menu-header-divider">
+      </div>
+      <div class="board-menu-content">
+        <div class="board-menu-content-frame">
+          <ul class="board-menu-navigation">
+            <li class="board-menu-navigation-item">
+            <%= link_to board, class: 'board-menu-navigation-item-link board-delete-btn', method: :delete do %>
+              <%= icon 'far', 'trash-alt', class: 'board-menu-navigation-item-link-icon' %><span>ボードを削除</span>
+            <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

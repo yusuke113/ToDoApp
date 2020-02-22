@@ -27,6 +27,8 @@ class BoardsController < ApplicationController
   end
 
   def destroy
+    @board.destroy
+    redirect_to root_path, flash: { notice: "「#{@board.title}の掲示板が削除されました」" }
   end
 
   private

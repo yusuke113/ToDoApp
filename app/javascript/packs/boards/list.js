@@ -80,7 +80,7 @@
 	const list_add_form = $('#list_add_form');
 	const list_name_input = $('#list-name-input');
 	const btn = $('#list-add-btn');
-	const cancel = $('.cancel');
+	const list_create_cancel = $('.list-create-cancel');
 
 	new_list_create.click(function() {
 		list_add_form.removeClass('hidden');
@@ -118,19 +118,12 @@
 	});
 
 	// キャンセル
-	cancel.click(function() {
+	list_create_cancel.click(function() {
 		// リスト追加のフォームを初期値に
 		list_add_form.addClass('hidden');
 		new_list_create.removeClass('hidden');
 		btn.removeClass('primary');
 		btn.addClass('disabled');
-		//
-		// カード追加フォームを初期値に
-		$('.card-composer').addClass('hidden');
-		$('.open-card-composer')
-			.parent()
-			.removeClass('hidden');
-		textdelete();
 		//
 	});
 	//
@@ -199,12 +192,25 @@
 			if (e.keyCode == 13) {
 				e.preventDefault();
 				console.log('www');
-				if (list_card_composer_textarea.val() == ''){
+				if (list_card_composer_textarea.val() == '') {
 					return false;
 				}
 			}
 		});
 	});
+
+	// キャンセル
+	const card_create_cancel = $('.card-create-cancel');
+	card_create_cancel.click(function() {
+		// カード追加フォームを初期値に
+		$('.card-composer').addClass('hidden');
+		$('.open-card-composer')
+			.parent()
+			.removeClass('hidden');
+		textdelete();
+		//
+	});
+	//
 	// =================================================//
 
 	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力があればカード追加
@@ -295,4 +301,28 @@
 		}
 	}
 	// =================================================
+
+	// ================================================//
+	//                     ボードメニュー                  //
+	// ================================================//
+	const js_show_sidebar = $('.js-show-sidebar');
+	const board_menu = $('.board-menu');
+	const board_menu_header_close_button = $('.board-menu-header-close-button');
+
+	js_show_sidebar.on('click', () => {
+		board_menu.removeClass('hidden');
+		setTimeout(function() {
+			board_menu.addClass('is-show');
+		}, 0);
+		// board_menu.addClass('is-show');
+	});
+
+	board_menu_header_close_button.on('click', function() {
+		board_menu.removeClass('is-show');
+		setTimeout(function() {
+			board_menu.addClass('hidden');
+		}, 100);
+	});
+
+	//
 }
