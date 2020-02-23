@@ -1,6 +1,11 @@
 <% cards.each do |card| %>
 <div class="list-card-details">
-  <span class="list-card-title"><%= card.name %></span>
+  <div class="list-card-menu">
+    <span class="list-card-title"><%= card.name %></span>
+    <div class="card-edit-btn" data-card-id=<%= card.id %> data-card-name=<%= card.name %>>
+      <%= icon 'far', 'edit', class: 'card-edit-icon' %>
+    </div>
+  </div>
 </div>
 <% end %>
 <%= render partial: 'cards/form', locals: { list: list, card: Card.new() } %>

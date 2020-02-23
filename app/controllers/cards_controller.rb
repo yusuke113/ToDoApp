@@ -14,6 +14,9 @@ def create
 end
 
 def destroy
+  card = Card.find(params[:id])
+  card.destroy
+  redirect_to card.list.board
 end
 
 private

@@ -7,8 +7,9 @@
       <%= render @board.lists %>
       <%= render partial: 'lists/form', locals: { list: @list } %>
     </div>
-      <%= render partial: 'boards/board-menu', locals: { board: @board } %>
+    <%= render partial: 'boards/board-menu', locals: { board: @board } %>
   </div>
 </div>
+<%= render partial: 'cards/edit' %>
 <%= javascript_pack_tag 'boards/list' %>
 <%= javascript_pack_tag 'boards/card' %>

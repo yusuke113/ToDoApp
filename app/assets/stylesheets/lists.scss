@@ -152,7 +152,6 @@
 	}
 }
 
-
 .board-menu-container {
 	display: flex;
 	flex-direction: row;
@@ -380,6 +379,7 @@
 		}
 	}
 
+	// カード
 	.list-cards {
 		flex: 1 1 auto;
 		margin-bottom: 0;
@@ -410,6 +410,21 @@
 			background-color: #f4f5f7;
 			border-bottom-color: rgba(9, 30, 66, 0.3);
 		}
+
+		&:hover .card-edit-icon {
+			display: inline-block;
+			color: #42526e;
+			background-color: #f4f5f7;
+			opacity: 0.8;
+			padding: 4px;
+			border-radius: 3px;
+			z-index: 40;
+
+			&:hover {
+				opacity: 1;
+				background-color: #ebecf0;
+			}
+		}
 	}
 
 	.list-card-title {
@@ -423,6 +438,23 @@
 		font-size: 14px;
 	}
 
+	.list-card-menu {
+		display: flex;
+		justify-content: space-between;
+	}
+	.card-edit-btn {
+		text-decoration: none;
+	}
+
+	.card-edit-icon {
+		display: none;
+		font-size: 14px;
+		top: -5px;
+	}
+
+	//
+
+	// カード追加
 	.card-composer {
 		padding-bottom: 8px;
 	}
@@ -519,6 +551,7 @@
 p {
 	margin: 0;
 }
+//
 
 // =================================
 
@@ -597,6 +630,7 @@ p {
 
 // =================================
 
+// カードを追加
 #new-list-create {
 	cursor: pointer;
 	position: relative;
@@ -649,6 +683,157 @@ p {
 		display: block;
 	}
 }
+//
+
+// カード編集
+.quick-card-editor {
+	background: rgba(0, 0, 0, .6);
+	bottom: 0;
+	color: #fff;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 110;
+}
+
+.quick-card-editor-close-icon-cancel {
+	cursor: pointer;
+	color: hsla(0, 0%, 100%, .6);
+	padding: 9px;
+	position: absolute;
+	text-align: center;
+	right: 0;
+	top: 0;
+	font-size: 28px;
+	height: 32px;
+	line-height: 32px;
+	width: 32px;
+	transition-property: transform, color;
+	transition-duration: 0.15s;
+
+	&:hover {
+		color: #fff;
+		transform: scale(1.2);
+	}
+}
+
+.quick-card-editor-card {
+	position: absolute;
+}
+
+.quick-card-editor-card {
+	position: absolute;
+}
+
+.list-card-quick-edit {
+	background-color: #fff;
+	border-radius: 3px;
+	box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+	cursor: pointer;
+	display: block;
+	margin-bottom: 8px;
+	max-width: 300px;
+	min-height: 20px;
+	position: relative;
+	text-decoration: none;
+	z-index: 0;
+}
+
+.list-card-details {
+	overflow: hidden;
+	padding: 6px 8px 2px;
+	position: relative;
+	z-index: 10;
+}
+
+.list-card-edit-title {
+	background: none;
+	border: none;
+	box-shadow: none;
+	width: 100%;
+	height: auto;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	overflow-wrap: break-word;
+	resize: none;
+	margin-bottom: 4px;
+	line-height: 20px;
+	max-height: 162px;
+	min-height: 54px;
+	padding: 0;
+	font-size: 14px;
+
+	&:focus {
+		background: #fff;
+		border: none;
+		outline: 0;
+	}
+
+	&::placeholder {
+		font-size: 14px;
+	}
+}
+
+.list-card-edit-submit-btn {
+	background-color: #5aac44;
+	box-shadow: none;
+	border: none;
+	color: #fff;
+	box-shadow: none;
+	border: none;
+	cursor: pointer;
+	padding: 6px 24px;
+	display: inline-block;
+	line-height: 20px;
+	font-size: 14px;
+	border-radius: 3px;
+}
+
+.quick-card-editor-buttons {
+	left: 100%;
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	width: 240px;
+	z-index: 0;
+	transform: translateX(-20px);
+	transition: opacity 85ms ease-in, transform 85ms ease-in;
+	transform: translateX(0);
+
+	.quick-card-editor-buttons-item {
+		background: rgba(0, 0, 0, 0.6);
+		border-radius: 3px;
+		clear: both;
+		color: #e6e6e6;
+		display: block;
+		float: left;
+		margin: 0 0 4px 8px;
+		padding: 6px 12px 6px 8px;
+		text-decoration: none;
+		transition: transform 85ms ease-in;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.8);
+			color: #fff;
+			transform: translateX(5px);
+		}
+
+		.card-edit-icon {
+			color: #fff;
+			text-decoration: none;
+			height: 20px;
+			font-size: 16px;
+			line-height: 20px;
+			width: 20px;
+		}
+
+		.quick-card-editor-buttons-item-text {
+			margin-left: 4px;
+		}
+	}
+}
+
 //
 
 // ==================================

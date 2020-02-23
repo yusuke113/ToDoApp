@@ -139,7 +139,7 @@
 	//
 
 	// ================================================//
-	//     カード追加ボタン[disabled,primary切り替え]      //
+	//                     カード追加                     //
 	// ================================================//
 
 	$('.open-card-composer').click(function() {
@@ -198,6 +198,75 @@
 			}
 		});
 	});
+
+	// ================================================//
+	//                     カード編集                     //
+	// ================================================//
+
+	const card_edit_btn = $('.card-edit-btn');
+	const quick_card_editor = $('.quick-card-editor');
+	const quick_card_editor_card = $('.quick-card-editor-card');
+	const js_edit_card_title = $('.js-edit-card-title');
+
+	card_edit_btn.click(function() {
+		const edit_card_id = $(this).data('card-id');
+		const edit_card_name = $(this).data('card-name');
+		const js_edit_labels = $('.js-edit-labels');
+		const delete_card_url = `/cards/${edit_card_id}`;
+
+		// cardの削除のurlを変更する
+		js_edit_labels.attr('href', delete_card_url);
+		js_edit_card_title.val(edit_card_name)
+		quick_card_editor.removeClass('hidden');
+		js_edit_card_title.focus().select();
+	});
+
+	// 編集エリア以外クリックで閉じる
+	$(document).on('click touchend', function(event) {
+		if (
+			!$(event.target).closest(quick_card_editor_card).length &&
+			!$(event.target).closest(card_edit_btn).length
+		) {
+			// ボードタイトルの変更を反映
+			quick_card_editor.addClass('hidden');
+			console.log('close');
+		}
+	});
+	//
+
+	$('.js-edit-card-title').on('input', () => {
+		// ===========テキストエリアの幅を行数で変える========//
+
+		// ターゲットのテキストエリア要素を取得する
+		const card_create_btn = $('.js-save-edits');
+		const target = $('.js-edit-card-title:focus');
+
+		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
+		target.css('height', '20px');
+		// 1行の長さを取得する
+		var wSclollHeight = parseInt(target.get(0).scrollHeight - 2);
+		var wLineH = parseInt(target.css('lineHeight').replace(/px/, ''));
+		// 最低1行の表示エリアにする
+		if (wSclollHeight < wLineH * 2) {
+			wSclollHeight = wLineH * 2;
+		}
+		// テキストエリアの高さを設定する
+		target.css('height', `${wSclollHeight}px`);
+		// =================================================//
+
+		// ========Enter押したらテキストエリアのfocus外す=======//
+
+		target.on('keydown', e => {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				card_create_btn.click();
+				textdelete();
+			}
+		});
+	});
+	// =================================================//
+
+	// ==============================================//
 
 	// キャンセル
 	const card_create_cancel = $('.card-create-cancel');
@@ -323,6 +392,5 @@
 			board_menu.addClass('hidden');
 		}, 100);
 	});
-
 	//
 }
