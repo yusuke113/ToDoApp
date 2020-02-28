@@ -19,6 +19,13 @@ def destroy
   redirect_to card.list.board
 end
 
+def update
+  card = Card.find(params[:id])
+  card.update(card_params)
+
+  redirect_to card.list.board
+end
+
 private
 
   def card_params

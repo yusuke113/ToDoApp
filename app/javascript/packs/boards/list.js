@@ -207,19 +207,35 @@
 	const quick_card_editor = $('.quick-card-editor');
 	const quick_card_editor_card = $('.quick-card-editor-card');
 	const js_edit_card_title = $('.js-edit-card-title');
+	const js_save_edits = $('.js-save-edits');
 
 	card_edit_btn.click(function() {
 		const edit_card_id = $(this).data('card-id');
 		const edit_card_name = $(this).data('card-name');
 		const js_edit_labels = $('.js-edit-labels');
-		const delete_card_url = `/cards/${edit_card_id}`;
+		const target_card_url = `/cards/${edit_card_id}`;
+		// ターゲットのカードの位置を取する
+		const targetCard = $(this).parents('.list-card-details')
+		const targetOffset = targetCard.offset();
+
+		// cardの編集フォームのactionを変更する
+		js_save_edits.attr('action', target_card_url)
 
 		// cardの削除のurlを変更する
-		js_edit_labels.attr('href', delete_card_url);
+		js_edit_labels.attr('href', target_card_url);
+
+		// テキストエリアにターゲットカードのnameを表示
 		js_edit_card_title.val(edit_card_name)
 		quick_card_editor.removeClass('hidden');
 		js_edit_card_title.focus().select();
+
+		// カード編集フォームの位置を設定する
+		quick_card_editor_card.css(targetOffset);
+
 	});
+
+
+
 
 	// 編集エリア以外クリックで閉じる
 	$(document).on('click touchend', function(event) {
@@ -229,7 +245,6 @@
 		) {
 			// ボードタイトルの変更を反映
 			quick_card_editor.addClass('hidden');
-			console.log('close');
 		}
 	});
 	//

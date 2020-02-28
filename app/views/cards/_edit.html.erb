@@ -1,13 +1,15 @@
 <div class="quick-card-editor hidden">
   <span class="icon-close quick-card-editor-close-icon-cancel">×</span>
-  <div class="quick-card-editor-card" style="top: 207.890625px; left: 15.95703125px; width: 256px;">
+  <div class="quick-card-editor-card" style="width: 256px;">
+    <%= form_with url: 'cardS/#', method: :put, html: { class: 'list-card-edit-form js-save-edits' } do |f| %>
     <div class="list-card list-card-quick-edit">
       <div class="list-card-details js-card-details">
-        <textarea class="list-card-edit-title js-edit-card-title" dir="auto"
-          style="overflow: hidden; overflow-wrap: break-word; resize: none"></textarea>
+        <%= f.text_area :name, name: 'card[name]', class: "list-card-edit-title js-edit-card-title", dir: "auto",
+          style: "overflow: hidden; overflow-wrap: break-word; resize: none;" %>
       </div>
     </div>
-    <input class="list-card-edit-submit-btn primary js-save-edits" type="submit" value="保存">
+    <%= f.submit '保存', { class: 'list-card-edit-submit-btn primary js-save-edits' } %>
+    <% end %>
     <div class="quick-card-editor-buttons">
       <a class="quick-card-editor-buttons-item js-edit-labels" rel="nofollow" data-method="delete" href="#">
         <%= icon 'far', 'trash-alt', class: 'card-edit-icon' %>

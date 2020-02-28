@@ -512,8 +512,8 @@
 		color: #5e6c84;
 		display: block;
 		flex: 1 0 auto;
-		margin: 2px 8px 8px 8px;
-		padding: 4px 8px;
+		margin: 2px 0px 8px 0px;
+		padding: 4px 10px;
 		position: relative;
 		text-decoration: none;
 		user-select: none;
@@ -687,7 +687,7 @@ p {
 
 // カード編集
 .quick-card-editor {
-	background: rgba(0, 0, 0, .6);
+	background: rgba(0, 0, 0, 0.6);
 	bottom: 0;
 	color: #fff;
 	left: 0;
@@ -699,7 +699,7 @@ p {
 
 .quick-card-editor-close-icon-cancel {
 	cursor: pointer;
-	color: hsla(0, 0%, 100%, .6);
+	color: hsla(0, 0%, 100%, 0.6);
 	padding: 9px;
 	position: absolute;
 	text-align: center;
