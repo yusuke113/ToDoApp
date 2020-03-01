@@ -139,6 +139,66 @@
 	//
 
 	// ================================================//
+	//                     リスト編集                     //
+	// ================================================//
+	const js_open_list_menu = $('.js-open-list-menu');
+	const pop_over = $('.pop-over');
+	const pop_over_header_close_btn = $('.pop-over-header-close-btn');
+	const js_delete_list = $('.js-delete-list');
+
+	js_open_list_menu.click(function() {
+		// ターゲットのリストのid取得
+		const edit_list_id = $(this).data('list-id');
+		// ターゲット操作のurl作成
+		const target_list_url = `/lists/${edit_list_id}`;
+		// ターゲットのリストの位置を設定する
+		const targetList = $(this);
+		const targetOffset = targetList.offset();
+
+		// deleteのurlを設定する
+		js_delete_list.attr('href', target_list_url);
+
+		if (!pop_over.hasClass('hidden')) {
+			pop_over.addClass('hidden');
+			console.log('www');
+		}
+		// リストメニューの位置を設定
+		// pop_over.css(targetOffset);
+		pop_over.css({
+			'top': targetOffset.top + 40,
+			'left': targetOffset.left
+		});
+
+		console.log(targetList.offset().top);
+		console.log(targetList.offset().left);
+
+		// listの削除のurlを変更する
+		js_delete_list.attr('href', target_list_url);
+		// リストメニューを表示する
+		pop_over.removeClass('hidden');
+		console.log('=======================');
+		console.log(targetOffset);
+		console.log(pop_over.offset());
+		console.log(pop_over.offset().top);
+	});
+
+	// 編集エリア以外クリックで閉じる
+	$(document).on('click touchend', function(event) {
+		if (
+			!$(event.target).closest(pop_over).length &&
+			!$(event.target).closest(js_open_list_menu).length
+		) {
+			pop_over.addClass('hidden');
+		}
+	});
+
+	pop_over_header_close_btn.on('click touchend', function() {
+		pop_over.addClass('hidden');
+	});
+
+	//
+
+	// ================================================//
 	//                     カード追加                     //
 	// ================================================//
 
@@ -215,27 +275,23 @@
 		const js_edit_labels = $('.js-edit-labels');
 		const target_card_url = `/cards/${edit_card_id}`;
 		// ターゲットのカードの位置を取する
-		const targetCard = $(this).parents('.list-card-details')
+		const targetCard = $(this).parents('.list-card-details');
 		const targetOffset = targetCard.offset();
 
 		// cardの編集フォームのactionを変更する
-		js_save_edits.attr('action', target_card_url)
+		js_save_edits.attr('action', target_card_url);
 
 		// cardの削除のurlを変更する
 		js_edit_labels.attr('href', target_card_url);
 
 		// テキストエリアにターゲットカードのnameを表示
-		js_edit_card_title.val(edit_card_name)
+		js_edit_card_title.val(edit_card_name);
 		quick_card_editor.removeClass('hidden');
 		js_edit_card_title.focus().select();
 
 		// カード編集フォームの位置を設定する
 		quick_card_editor_card.css(targetOffset);
-
 	});
-
-
-
 
 	// 編集エリア以外クリックで閉じる
 	$(document).on('click touchend', function(event) {
