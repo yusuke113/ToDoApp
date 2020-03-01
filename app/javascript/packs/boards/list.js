@@ -4,7 +4,25 @@
 	// ================================================//
 	// 					    マウスドラッグで横スクロール	   			  //
 	// ================================================//
+	const scroll = new ScrollBooster({
+		viewport: document.querySelector('#board'),
+		content: document.querySelector('.js-scroll-view'),
+		scrollMode: 'native',
+		direction: 'horizontal',
+		emulateScroll: true,
+		bounce: false,
+		friction: 1
+	});
 
+	// $('#board')以外クリック時はスクロールさせない
+	$(document).on('mousedown', function(event) {
+		event.preventDefault();
+		if ( $(event.target).closest($('.list')).length ) {
+			scroll.updateOptions({ friction: 1 });
+		} else {
+			scroll.updateOptions({ friction: 0.45 });
+		}
+	});
 	// ================================================//
 
 	// ================================================//
@@ -165,8 +183,8 @@
 		// リストメニューの位置を設定
 		// pop_over.css(targetOffset);
 		pop_over.css({
-			'top': targetOffset.top + 40,
-			'left': targetOffset.left
+			top: targetOffset.top + 40,
+			left: targetOffset.left
 		});
 
 		console.log(targetList.offset().top);
