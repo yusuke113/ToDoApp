@@ -11,13 +11,17 @@
 		direction: 'horizontal',
 		emulateScroll: true,
 		bounce: false,
-		friction: 0.45
-	});
-	
-	$('.list').on('mousedown', (e) => {
-		e.stopPropagation();
+		friction: 1
 	});
 
+	// $('#board')以外クリック時はスクロールさせない
+	$(document).on('mousedown', function(event) {
+		if ( $(event.target).closest($('.list')).length ) {
+			scroll.updateOptions({ friction: 1 });
+		} else {
+			scroll.updateOptions({ friction: 0.45 });
+		}
+	});
 	// ================================================//
 
 	// ================================================//
@@ -467,7 +471,6 @@
 		setTimeout(function() {
 			board_menu.addClass('is-show');
 		}, 0);
-		// board_menu.addClass('is-show');
 	});
 
 	board_menu_header_close_button.on('click', function() {
@@ -477,13 +480,11 @@
 		}, 100);
 	});
 	//
-	// ================================================//
-	//                      ボード削除                    //
-	// ================================================//
-	// const js_delete_list = $('.js-delete-list');
 
-	// js_delete_list.click(function(e) {
-	// e.preventDefault();
 
-	// });
+$(document).on('click touchend', function(event) {
+	const www = event.target;
+		console.log(www);
+});
+
 }

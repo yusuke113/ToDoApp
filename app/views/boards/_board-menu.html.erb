@@ -12,7 +12,7 @@
         <div class="board-menu-content-frame">
           <ul class="board-menu-navigation">
             <li class="board-menu-navigation-item">
-            <%= link_to board, class: 'board-menu-navigation-item-link board-delete-btn', method: :delete do %>
+            <%= link_to board, class: 'board-menu-navigation-item-link board-delete-btn', method: :delete, data: { confirm: "「#{board.title}」を削除しますか？" } do %>
               <%= icon 'far', 'trash-alt', class: 'board-menu-navigation-item-link-icon' %><span>ボードを削除</span>
             <% end %>
             </li>
