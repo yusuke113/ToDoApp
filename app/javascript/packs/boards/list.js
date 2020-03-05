@@ -11,18 +11,13 @@
 		direction: 'horizontal',
 		emulateScroll: true,
 		bounce: false,
-		friction: 1
+		friction: 0.45
+	});
+	
+	$('.list').on('mousedown', (e) => {
+		e.stopPropagation();
 	});
 
-	// $('#board')以外クリック時はスクロールさせない
-	$(document).on('mousedown', function(event) {
-		event.preventDefault();
-		if ( $(event.target).closest($('.list')).length ) {
-			scroll.updateOptions({ friction: 1 });
-		} else {
-			scroll.updateOptions({ friction: 0.45 });
-		}
-	});
 	// ================================================//
 
 	// ================================================//
@@ -482,4 +477,13 @@
 		}, 100);
 	});
 	//
+	// ================================================//
+	//                      ボード削除                    //
+	// ================================================//
+	// const js_delete_list = $('.js-delete-list');
+
+	// js_delete_list.click(function(e) {
+	// e.preventDefault();
+
+	// });
 }

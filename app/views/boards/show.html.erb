@@ -4,7 +4,7 @@
     <div class="board-canvas">
     </div>
     <div id="board">
-      <div class="js-scroll-view" style="width: 100%; display: flex;">
+      <div class="js-scroll-view" style="width: cover; display: flex;">
         <%= render @board.lists %>
         <%= render partial: 'lists/form', locals: { list: @list } %>
       </div>
