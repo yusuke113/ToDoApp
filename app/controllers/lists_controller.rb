@@ -1,11 +1,18 @@
 class ListsController < ApplicationController
 
   def create
-    list = List.new(list_params)
-    if list.save
-      redirect_to list.board
-    else
-      render :show, alert: 'error'
+    @list = List.new(list_params)
+    respond_to do |format|
+      if @list.save
+        format.html { redirect_to @list.board }
+        format.json { render :show, status: :created }
+        format.js
+        # redirect_to @list.board
+      else
+        format.html { render :show }
+        format.json { render :show, status: :unprocessable_entity }
+        # render :show, alert: 'error'
+      end
     end
   end
 

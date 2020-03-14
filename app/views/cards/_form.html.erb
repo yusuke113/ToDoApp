@@ -2,7 +2,7 @@
 
   <%= form_with model: card, html: { class: 'card-form js-card-form' } do |f| %>
   <div class="list-card">
-    <%= f.hidden_field :list_id, id: "card_list_id#{list.id}", value: list.id %>
+    <%= f.hidden_field :list_id, id: "card_list_id_#{list.id}", value: list.id %>
     <div class="list-card-details">
       <%= f.text_area :name, { class: 'list-card-composer-textarea', id: "card_name_list[#{list.id}]", spellcheck: 'false', dir: 'auto', placeholder: 'このカードにタイトルを入力...'  } %>
     </div>

@@ -1,6 +1,12 @@
-'use strict';
+$('.js-list-create-form').before('<%= j render @list %>');
 
-{
+
+$(document).ready(function () {
+	<%# ajaxComplete %>
+
+	'use strict';
+  $('.list-name-input').val('');
+
 	// ================================================//
 	// 					    マウスドラッグで横スクロール	   			  //
 	// ================================================//
@@ -22,10 +28,14 @@
 			scroll.updateOptions({ friction: 0.45 });
 		}
 	});
+
+	<%# スクロール位置を最後尾に %>
+	$('#board').scrollLeft($('.js-scroll-view').width());
+	
 	// ================================================//
 
 	// ================================================//
-	// 					  List[name]テキストエリアの設定	   			   //
+	// 					  List[name]テキストエリアの設定	   			  //
 	// ================================================//
 	$('.list-header-name').on('input', () => {
 		// ===========テキストエリアの幅を行数で変える========//
@@ -89,7 +99,7 @@
 	});
 	// =================================================//
 
-	// ================================================//
+	<%# // ================================================//
 	//                   リスト追加機能                    //
 	// ================================================//
 
@@ -98,9 +108,9 @@
 	const list_add_form = $('#list_add_form');
 	const list_name_input = $('#list-name-input');
 	const btn = $('#list-add-btn');
-	const list_create_cancel = $('.list-create-cancel');
+	const list_create_cancel = $('.list-create-cancel'); %>
 
-	new_list_create.click(function() {
+	<%# new_list_create.click(function() {
 		list_add_form.removeClass('hidden');
 		new_list_create.addClass('hidden');
 		list_name_input.focus();
@@ -153,7 +163,7 @@
 		if (list_name_input.val() == '') {
 			return false;
 		}
-	});
+	}); %>
 
 	//
 
@@ -167,7 +177,6 @@
 	const js_delete_list = $('.js-delete-list');
 
 	js_open_list_menu.click(function() {
-
 		// ターゲットのリストのid取得
 		const edit_list_id = $(this).data('list-id');
 		// ターゲット操作のurl作成
@@ -191,11 +200,15 @@
 		// リストメニューを表示する
 		if (pop_over.hasClass('hidden')) {
 			pop_over.removeClass('hidden');
+			console.log('ajax open');
 		} else {
 			pop_over.addClass('hidden');
+			console.log('ajax close');
 		}
 
-		console.log('www');
+		console.log('ajax');
+	
+
 	});
 
 	// 編集エリア以外クリックで閉じる
@@ -205,12 +218,14 @@
 			!$(event.target).closest(js_open_list_menu).length
 		) {
 			pop_over.addClass('hidden');
+			console.log('document');
 		}
 	});
 
 	pop_over_header_close_btn.on('click touchend', function() {
 		pop_over.addClass('hidden');
 	});
+
 	//
 
 	// ================================================//
@@ -257,6 +272,7 @@
 		js_card_form.submit(function(e) {
 			e.preventDefault();
 			if (list_card_composer_textarea.val() == '') {
+			  console.log('list empty');
 				return false;
 			}
 		});
@@ -270,6 +286,7 @@
 				}
 			}
 		});
+
 	});
 
 	// ================================================//
@@ -386,9 +403,12 @@
 		$('.card-create-btn').addClass('disabled');
 	}
 
-	// =================================================//
+});
 
-	// ================================================//
+
+	<%# // =================================================// %>
+
+	<%# // ================================================//
 	//                   ボードタイトル変更                 //
 	// ================================================//
 	const board_header_btn = $('.board-header-btn');
@@ -475,11 +495,4 @@
 			board_menu.addClass('hidden');
 		}, 100);
 	});
-	//
-
-	// ================================================//
-	//                list[create]Ajax                  //
-	// ================================================//
-
-	// =================================================
-}
+	// %>

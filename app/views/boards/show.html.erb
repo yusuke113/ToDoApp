@@ -6,7 +6,7 @@
     <div id="board">
       <div class="js-scroll-view" style="width: cover; display: flex;">
         <%= render @board.lists %>
-        <%= render partial: 'lists/form', locals: { list: @list } %>
+        <%= render partial: 'lists/form', locals: { board: @board, list: @list } %>
       </div>
     </div>
     <%= render partial: 'boards/board-menu', locals: { board: @board } %>
