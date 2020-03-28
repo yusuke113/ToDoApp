@@ -17,9 +17,17 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    list = List.find(params[:id])
-    list.destroy
-    redirect_to list.board
+    @list = List.find(params[:id])
+    respond_to do |format|
+      if @list.destroy
+        format.html { redirect_to @list.board }
+        format.json { render :show, status: :no_content }
+        format.js
+      else
+        format.html { redirect_to @list.board }
+        format.json { render :show, status: :internal_server_error }
+      end
+    end
   end
 
   private

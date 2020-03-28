@@ -8,8 +8,8 @@
       <div>
         <ul class="pop-over-list">
           <li>
-            <a class="js-delete-list" rel="nofollow" data-method="delete" href="#">リストを削除</a>
-          </li>
+            <%= link_to 'リストを削除', '#', class: 'js-delete-list', rel: 'nofollow', method: :delete, remote: true %>
+          <li>
         </ul>
       </div>
     </div>

@@ -11,10 +11,10 @@
     <%= f.submit '保存', { class: 'list-card-edit-submit-btn primary js-save-edits' } %>
     <% end %>
     <div class="quick-card-editor-buttons">
-      <a class="quick-card-editor-buttons-item js-edit-labels" rel="nofollow" data-method="delete" href="#">
-        <%= icon 'far', 'trash-alt', class: 'card-edit-icon' %>
-        <span class="quick-card-editor-buttons-item-text">削除</span>
-      </a>
+      <%= link_to '#', class: 'quick-card-editor-buttons-item js-edit-labels', method: :delete, remote: true do %>
+      <%= icon 'far', 'trash-alt', class: 'card-edit-icon' %>
+      <span class="quick-card-editor-buttons-item-text">削除</span>
+      <% end %>
     </div>
   </div>
 </div>
