@@ -280,7 +280,7 @@
 
 	card_edit_btn.click(function() {
 		const edit_card_id = $(this).data('card-id');
-		const edit_card_name = $(this).data('card-name');
+		const edit_card_name = $(`#card-${edit_card_id}`).find('.list-card-title').text();
 		const js_edit_labels = $('.js-edit-labels');
 		const target_card_url = `/cards/${edit_card_id}`;
 		// ターゲットのカードの位置を取する

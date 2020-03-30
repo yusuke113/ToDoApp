@@ -43,10 +43,17 @@ def destroy
 end
 
 def update
-  card = Card.find(params[:id])
-  card.update(card_params)
-
-  redirect_to card.list.board
+  @card = Card.find(params[:id])
+  respond_to do |format|
+    if @card.update(card_params)
+      format.html { redirect_to @card.board }
+      format.json { render :show, status: :no_content }
+      format.js
+    else
+      format.html { redirect_to @card.board }
+      format.json { render :show, status: :internal_server_error }
+    end
+  end
 end
 
 private

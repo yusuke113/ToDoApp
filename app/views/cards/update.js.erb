@@ -1,0 +1,10 @@
+var update_card_name = $('.js-edit-card-title').val();
+$("#card-<%= @card.id %>").find('.list-card-title').text(update_card_name);
+var test = $("#card-<%= @card.id %>").find('.list-card-title').text();
+
+$(document).ready(function () {
+
+  $('.quick-card-editor').addClass('hidden');
+  $('.js-edit-card-title').val('');
+
+});
