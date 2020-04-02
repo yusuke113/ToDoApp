@@ -1,4 +1,6 @@
 $("#card-composer-<%= @card.list.id %>").before('<%= j render @card %>');
+$(".list-card-composer-textarea").val('');
+
 
 $(document).ready(function () {
 

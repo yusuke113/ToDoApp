@@ -1,7 +1,7 @@
 <div class="quick-card-editor hidden">
   <span class="icon-close quick-card-editor-close-icon-cancel">×</span>
   <div class="quick-card-editor-card" style="width: 256px;">
-    <%= form_with url: 'cardS/#', method: :put, html: { class: 'list-card-edit-form js-save-edits' } do |f| %>
+    <%= form_with url: 'cards/#', method: :put, html: { class: 'list-card-edit-form js-save-edits' } do |f| %>
     <div class="list-card list-card-quick-edit">
       <div class="list-card-details js-card-details">
         <%= f.text_area :name, name: 'card[name]', class: "list-card-edit-title js-edit-card-title", dir: "auto",

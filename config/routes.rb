@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :boards
 
   resources :lists, only: %i[create destroy update]
-  resources :cards, only: %i[show create destroy update]
+  resources :cards, only: %i[create destroy update]
 
 end

@@ -30,6 +30,15 @@ class ListsController < ApplicationController
     end
   end
 
+  def update
+    @list = List.find(params[:id])
+      if @list.update(list_params)
+        redirect_to @list.board
+      else
+        redirect_to @list.board 
+      end
+  end
+
   private
 
     def list_params

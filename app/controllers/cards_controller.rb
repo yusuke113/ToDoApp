@@ -1,8 +1,7 @@
 class CardsController < ApplicationController
 
-def show
-
-end
+# def show
+# end
 
 # def create
 #   card = Card.new(card_params)
@@ -12,6 +11,7 @@ end
 #     redirect_to card.list.board, alert: 'error'
 #   end
 # end
+
 def create
   @card = Card.new(card_params)
   respond_to do |format|

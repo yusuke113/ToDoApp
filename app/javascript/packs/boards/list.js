@@ -55,7 +55,25 @@
 			}
 		});
 		// =================================================//
+
+		
 	});
+	
+	// フォーカスが外れたらupdateメゾッドを実行する
+	$('.list-header-name').blur(function() {
+		const target = $(this);
+		const list_header_title = target.prev();
+		const list_name_updat_form = target.parents('.list-name-update-form');
+
+		if (list_header_title.text() == target.val() || target.val() == '') {
+			target.val(list_header_title.text());
+		} else {
+			console.log(list_name_updat_form);
+			list_name_updat_form.submit();
+		}
+
+	});
+	
 
 	$('.list-card-composer-textarea').on('input', () => {
 		// ===========テキストエリアの幅を行数で変える========//
@@ -82,11 +100,20 @@
 		target.on('keydown', e => {
 			if (e.keyCode == 13) {
 				e.preventDefault();
-				card_create_btn.click();
 				textdelete();
 			}
 		});
 	});
+
+	// 編集エリア以外クリックで閉じる
+	$(document).on('click touchend', function(event) {
+		if (!$(event.target).closest('.list-header-name').length) {
+			// テキストエリアのfocus外す
+			$('.list-header-name:focus').blur();
+		}
+	});
+	//
+
 	// =================================================//
 
 	// ================================================//
@@ -157,7 +184,7 @@
 	//
 
 	// ================================================//
-	//                     リスト編集                     //
+	//                   リストメニュー                   //
 	// ================================================//
 
 	const js_open_list_menu = $('.js-open-list-menu');
@@ -224,6 +251,7 @@
 		const card_create_btn = card_composer.find('.card-create-btn');
 
 		textdelete();
+		list_card_composer_textarea.focus();
 
 		// カード追加ボタンを決してフォームを表示
 		$('.card-composer').addClass('hidden');
@@ -250,10 +278,16 @@
 		});
 		//
 
+		console.log(card_create_btn);
+		console.log(js_card_form);
+		
 		js_card_form.submit(function(e) {
 			e.preventDefault();
 			if (list_card_composer_textarea.val() == '') {
 				return false;
+			} else {
+				console.log('a');
+
 			}
 		});
 		//
@@ -263,6 +297,9 @@
 				e.preventDefault();
 				if (list_card_composer_textarea.val() == '') {
 					return false;
+				} else {
+					card_create_btn.click();
+					console.log('kkk');
 				}
 			}
 		});
@@ -280,7 +317,9 @@
 
 	card_edit_btn.click(function() {
 		const edit_card_id = $(this).data('card-id');
-		const edit_card_name = $(`#card-${edit_card_id}`).find('.list-card-title').text();
+		const edit_card_name = $(`#card-${edit_card_id}`)
+			.find('.list-card-title')
+			.text();
 		const js_edit_labels = $('.js-edit-labels');
 		const target_card_url = `/cards/${edit_card_id}`;
 		// ターゲットのカードの位置を取する

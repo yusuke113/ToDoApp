@@ -1,7 +1,11 @@
 <div class="list-wrapper" id="list-<%= list.id %>">
   <div class="list">
     <div class="list-header">
-      <textarea class="list-header-name" name="list-name" spellcheck="false"><%= list.name %></textarea>
+      <%= form_with url: "/lists/#{list.id}", method: :put, html: { class: 'list-name-update-form' } do |f| %>
+      <h2 class="list-header-title"><%= list.name %></h2>
+      <%= f.text_area :name, name: 'list[name]',id: "list-name-#{list.id}", class: "list-header-name",value: list.name, spellcheck: "false", data: { list_name: list.name } %>
+      <%= f.submit '保存', { class: 'list-name-update-url' } %>
+      <% end %>
       <div class="list-header-extras">
         <div class="list-header-extras-menu js-open-list-menu" data-list-id=<%= list.id %>>
           <%= icon 'fa', 'ellipsis-h', class: 'icon-sm list-menu-btn-icon' %>
