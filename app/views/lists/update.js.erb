@@ -1,0 +1,5 @@
+
+var target = $("#list-name-<%= @list.id %>");
+var list_header_title = target.prev();
+
+list_header_title.text("<%= @list.name %>");

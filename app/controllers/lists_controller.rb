@@ -30,13 +30,27 @@ class ListsController < ApplicationController
     end
   end
 
+  # def update
+  #   @list = List.find(params[:id])
+  #     if @list.update(list_params)
+  #       redirect_to @list.board
+  #     else
+  #       redirect_to @list.board 
+  #     end
+  # end
+
   def update
     @list = List.find(params[:id])
+    respond_to do |format|
       if @list.update(list_params)
-        redirect_to @list.board
+        format.html { redirect_to @list.board }
+        format.json { render :show, status: :no_content }
+        format.js
       else
-        redirect_to @list.board 
+        format.html { redirect_to @list.board }
+        format.json { render :show, status: :internal_server_error }
       end
+    end
   end
 
   private

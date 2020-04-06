@@ -11,11 +11,11 @@
 		direction: 'horizontal',
 		emulateScroll: true,
 		bounce: false,
-		friction: 1
+		friction: 1,
 	});
 
 	// $('#board')以外クリック時はスクロールさせない
-	$(document).on('mousedown', function(event) {
+	$(document).on('mousedown', function (event) {
 		if ($(event.target).closest($('.list')).length) {
 			scroll.updateOptions({ friction: 1 });
 		} else {
@@ -33,6 +33,8 @@
 		// ターゲットのテキストエリア要素を取得する
 		const target = $('.list-header-name:focus');
 
+		const before_target_title = target.prev().val();
+
 		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
 		target.css('height', '20px');
 		// 1行の長さを取得する
@@ -44,72 +46,45 @@
 		}
 		// テキストエリアの高さを設定する
 		target.css('height', `${wSclollHeight}px`);
-		// =================================================//
-
-		// ========Enter押したらテキストエリアのfocus外す=======//
-
-		target.on('keydown', e => {
-			if (e.keyCode == 13) {
-				e.preventDefault();
-				target.blur();
-			}
-		});
-		// =================================================//
-
-		
 	});
-	
-	// フォーカスが外れたらupdateメゾッドを実行する
-	$('.list-header-name').blur(function() {
-		const target = $(this);
-		const list_header_title = target.prev();
-		const list_name_updat_form = target.parents('.list-name-update-form');
 
-		if (list_header_title.text() == target.val() || target.val() == '') {
+	$('.list-header-name').on('keydown', (e) => {
+		const target = $('.list-header-name:focus');
+		const list_header_title = target.prev();
+		const targetForm = target.parents('.list-name-update-form');
+
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			target.blur();
+		}
+	});
+
+	$('.list-header-name').blur( (e) => {
+		// eventのパラメーターから対象のidを取得してtargetに代入
+		const target = $(`#${e.target.attributes[1].value}`)
+		const list_header_title = target.prev();
+		const targetForm = target.parents('.list-name-update-form');
+
+		if (
+			list_header_title.text() == target.val() ||
+			target.val() == ''
+		) {
 			target.val(list_header_title.text());
 		} else {
-			console.log(list_name_updat_form);
-			list_name_updat_form.submit();
+			targetForm.find('.list-name-update-url').click();
 		}
 
-	});
-	
-
-	$('.list-card-composer-textarea').on('input', () => {
-		// ===========テキストエリアの幅を行数で変える========//
-
-		// ターゲットのテキストエリア要素を取得する
-		const card_create_btn = $('.card-create-btn');
-		const target = $('.list-card-composer-textarea:focus');
-
-		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
-		target.css('height', '20px');
-		// 1行の長さを取得する
-		var wSclollHeight = parseInt(target.get(0).scrollHeight - 2);
-		var wLineH = parseInt(target.css('lineHeight').replace(/px/, ''));
-		// 最低1行の表示エリアにする
-		if (wSclollHeight < wLineH * 2) {
-			wSclollHeight = wLineH * 2;
-		}
-		// テキストエリアの高さを設定する
-		target.css('height', `${wSclollHeight}px`);
-		// =================================================//
-
-		// ========Enter押したらテキストエリアのfocus外す=======//
-
-		target.on('keydown', e => {
-			if (e.keyCode == 13) {
-				e.preventDefault();
-				textdelete();
-			}
-		});
 	});
 
 	// 編集エリア以外クリックで閉じる
-	$(document).on('click touchend', function(event) {
+	$(document).on('click touchend', function (event) {
 		if (!$(event.target).closest('.list-header-name').length) {
 			// テキストエリアのfocus外す
-			$('.list-header-name:focus').blur();
+			const target = $('.list-header-name:focus');
+			const list_header_title = target.prev();
+			const targetForm = target.parents('.list-name-update-form');
+
+			target.blur();
 		}
 	});
 	//
@@ -127,7 +102,7 @@
 	const btn = $('#list-add-btn');
 	const list_create_cancel = $('.list-create-cancel');
 
-	new_list_create.click(function() {
+	new_list_create.click(function () {
 		list_add_form.removeClass('hidden');
 		new_list_create.addClass('hidden');
 		list_name_input.focus();
@@ -147,7 +122,7 @@
 	});
 
 	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力があればカード追加
-	$(document).on('click touchend', function(event) {
+	$(document).on('click touchend', function (event) {
 		if (
 			!$(event.target).closest(list_add_form).length &&
 			!$(event.target).closest(new_list_create).length &&
@@ -164,7 +139,7 @@
 	});
 
 	// キャンセル
-	list_create_cancel.click(function() {
+	list_create_cancel.click(function () {
 		// リスト追加のフォームを初期値に
 		list_add_form.addClass('hidden');
 		new_list_create.removeClass('hidden');
@@ -175,7 +150,7 @@
 	//
 
 	// フォームが空欄ならsubmitさせない
-	list_form.submit(function(e) {
+	list_form.submit(function (e) {
 		e.preventDefault();
 		if (list_name_input.val() == '') {
 			return false;
@@ -192,7 +167,7 @@
 	const pop_over_header_close_btn = $('.pop-over-header-close-btn');
 	const js_delete_list = $('.js-delete-list');
 
-	js_open_list_menu.click(function() {
+	js_open_list_menu.click(function () {
 		// ターゲットのリストのid取得
 		const edit_list_id = $(this).data('list-id');
 		// ターゲット操作のurl作成
@@ -204,7 +179,7 @@
 		// Listメニューの位置を決定
 		pop_over.css({
 			top: targetOffset.top + 40,
-			left: targetOffset.left
+			left: targetOffset.left,
 		});
 
 		// deleteのurlを設定する
@@ -222,7 +197,7 @@
 	});
 
 	// 編集エリア以外クリックで閉じる
-	$(document).on('click touchend', function(event) {
+	$(document).on('click touchend', function (event) {
 		if (
 			!$(event.target).closest(pop_over).length &&
 			!$(event.target).closest(js_open_list_menu).length
@@ -231,7 +206,7 @@
 		}
 	});
 
-	pop_over_header_close_btn.on('click touchend', function() {
+	pop_over_header_close_btn.on('click touchend', function () {
 		pop_over.addClass('hidden');
 	});
 	//
@@ -240,7 +215,7 @@
 	//                     カード追加                     //
 	// ================================================//
 
-	$('.open-card-composer').click(function() {
+	$('.open-card-composer').click(function () {
 		const open_card_composer = $(this);
 		const list_cards = $(this).closest('.list-cards');
 		const js_card_form = list_cards.find('.js-card-form');
@@ -255,13 +230,9 @@
 
 		// カード追加ボタンを決してフォームを表示
 		$('.card-composer').addClass('hidden');
-		$('.open-card-composer')
-			.parent()
-			.removeClass('hidden');
+		$('.open-card-composer').parent().removeClass('hidden');
 		card_composer.removeClass('hidden');
-		$(this)
-			.parent()
-			.addClass('hidden');
+		$(this).parent().addClass('hidden');
 		list_card_composer_textarea.focus().val('');
 		//
 
@@ -280,19 +251,18 @@
 
 		console.log(card_create_btn);
 		console.log(js_card_form);
-		
-		js_card_form.submit(function(e) {
+
+		js_card_form.submit(function (e) {
 			e.preventDefault();
 			if (list_card_composer_textarea.val() == '') {
 				return false;
 			} else {
 				console.log('a');
-
 			}
 		});
 		//
 		// 改行不可
-		list_card_composer_textarea.on('keydown', e => {
+		list_card_composer_textarea.on('keydown', (e) => {
 			if (e.keyCode == 13) {
 				e.preventDefault();
 				if (list_card_composer_textarea.val() == '') {
@@ -315,7 +285,7 @@
 	const js_edit_card_title = $('.js-edit-card-title');
 	const js_save_edits = $('.js-save-edits');
 
-	card_edit_btn.click(function() {
+	card_edit_btn.click(function () {
 		const edit_card_id = $(this).data('card-id');
 		const edit_card_name = $(`#card-${edit_card_id}`)
 			.find('.list-card-title')
@@ -342,7 +312,7 @@
 	});
 
 	// 編集エリア以外クリックで閉じる
-	$(document).on('click touchend', function(event) {
+	$(document).on('click touchend', function (event) {
 		if (
 			!$(event.target).closest(quick_card_editor_card).length &&
 			!$(event.target).closest(card_edit_btn).length
@@ -375,7 +345,7 @@
 
 		// ========Enter押したらテキストエリアのfocus外す=======//
 
-		target.on('keydown', e => {
+		target.on('keydown', (e) => {
 			if (e.keyCode == 13) {
 				e.preventDefault();
 				card_create_btn.click();
@@ -389,12 +359,10 @@
 
 	// キャンセル
 	const card_create_cancel = $('.card-create-cancel');
-	card_create_cancel.click(function() {
+	card_create_cancel.click(function () {
 		// カード追加フォームを初期値に
 		$('.card-composer').addClass('hidden');
-		$('.open-card-composer')
-			.parent()
-			.removeClass('hidden');
+		$('.open-card-composer').parent().removeClass('hidden');
 		textdelete();
 		//
 	});
@@ -402,15 +370,13 @@
 	// =================================================//
 
 	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力があればカード追加
-	$(document).on('click touchend', function(event) {
+	$(document).on('click touchend', function (event) {
 		if (
 			!$(event.target).closest('.card-composer').length &&
 			!$(event.target).closest('.open-card-composer').length
 		) {
 			$('.card-composer').addClass('hidden');
-			$('.open-card-composer')
-				.parent()
-				.removeClass('hidden');
+			$('.open-card-composer').parent().removeClass('hidden');
 			textdelete();
 		}
 	});
@@ -420,6 +386,40 @@
 		$('.card-create-btn').removeClass('primary');
 		$('.card-create-btn').addClass('disabled');
 	}
+
+	// ================================================//
+	//                 カード[name] update               //
+	// ================================================//
+
+	$('.list-card-composer-textarea').on('input', () => {
+		// ===========テキストエリアの幅を行数で変える========//
+
+		// ターゲットのテキストエリア要素を取得する
+		const card_create_btn = $('.card-create-btn');
+		const target = $('.list-card-composer-textarea:focus');
+
+		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
+		target.css('height', '20px');
+		// 1行の長さを取得する
+		var wSclollHeight = parseInt(target.get(0).scrollHeight - 2);
+		var wLineH = parseInt(target.css('lineHeight').replace(/px/, ''));
+		// 最低1行の表示エリアにする
+		if (wSclollHeight < wLineH * 2) {
+			wSclollHeight = wLineH * 2;
+		}
+		// テキストエリアの高さを設定する
+		target.css('height', `${wSclollHeight}px`);
+		// =================================================//
+
+		// ========Enter押したらテキストエリアのfocus外す=======//
+
+		target.on('keydown', (e) => {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				textdelete();
+			}
+		});
+	});
 
 	// =================================================//
 
@@ -431,13 +431,13 @@
 	const js_board_name_input = $('.js-board-name-input');
 
 	// ボードタイトルをクリックしたらタイトル変更フォームを表示
-	board_editing_target.click(function() {
+	board_editing_target.click(function () {
 		js_board_name_input.css('display', 'block');
 		js_board_name_input.focus().select();
 	});
 
 	// 開いてるフォーム以外をクリックするとフォームを閉じる&入力変更あれば更新
-	$(document).on('click touchend', function(event) {
+	$(document).on('click touchend', function (event) {
 		if (
 			!$(event.target).closest(board_editing_target).length &&
 			!$(event.target).closest(js_board_name_input).length
@@ -449,7 +449,7 @@
 
 	// ========Enter押したらテキストエリアのfocus外す=======//
 
-	js_board_name_input.on('keydown', e => {
+	js_board_name_input.on('keydown', (e) => {
 		if (e.keyCode == 13) {
 			e.preventDefault();
 			input_empty_before_value();
@@ -457,14 +457,14 @@
 	});
 	// =================================================//
 
-	js_board_name_input.on('focus', function() {
+	js_board_name_input.on('focus', function () {
 		console.log(`見本： ${board_header_btn.width()}`);
 		js_board_name_input.css('width', board_editing_target.width());
 		console.log(`実際： ${js_board_name_input.width()}`);
 	});
 
 	// テキストフォームの幅を文字列の長さになるようにする
-	js_board_name_input.on('input', function() {
+	js_board_name_input.on('input', function () {
 		var div = `<span class="js_form_width">${js_board_name_input.val()}</span>`;
 		js_board_name_input.before(div);
 		const form = $('.js_form_width');
@@ -499,14 +499,14 @@
 
 	js_show_sidebar.on('click', () => {
 		board_menu.removeClass('hidden');
-		setTimeout(function() {
+		setTimeout(function () {
 			board_menu.addClass('is-show');
 		}, 0);
 	});
 
-	board_menu_header_close_button.on('click', function() {
+	board_menu_header_close_button.on('click', function () {
 		board_menu.removeClass('is-show');
-		setTimeout(function() {
+		setTimeout(function () {
 			board_menu.addClass('hidden');
 		}, 100);
 	});
