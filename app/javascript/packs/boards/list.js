@@ -59,21 +59,17 @@
 		}
 	});
 
-	$('.list-header-name').blur( (e) => {
+	$('.list-header-name').blur((e) => {
 		// eventのパラメーターから対象のidを取得してtargetに代入
-		const target = $(`#${e.target.attributes[1].value}`)
+		const target = $(`#${e.target.attributes[1].value}`);
 		const list_header_title = target.prev();
 		const targetForm = target.parents('.list-name-update-form');
 
-		if (
-			list_header_title.text() == target.val() ||
-			target.val() == ''
-		) {
+		if (list_header_title.text() == target.val() || target.val() == '') {
 			target.val(list_header_title.text());
 		} else {
 			targetForm.find('.list-name-update-url').click();
 		}
-
 	});
 
 	// 編集エリア以外クリックで閉じる
@@ -321,6 +317,7 @@
 			quick_card_editor.addClass('hidden');
 		}
 	});
+
 	//
 
 	$('.js-edit-card-title').on('input', () => {
@@ -442,8 +439,8 @@
 			!$(event.target).closest(board_editing_target).length &&
 			!$(event.target).closest(js_board_name_input).length
 		) {
-			// ボードタイトルの変更を反映
-			input_empty_before_value();
+			// focus外す
+			js_board_name_input.css('display', 'none');
 		}
 	});
 
@@ -452,15 +449,14 @@
 	js_board_name_input.on('keydown', (e) => {
 		if (e.keyCode == 13) {
 			e.preventDefault();
-			input_empty_before_value();
+			// focus外す
+			js_board_name_input.blur();
 		}
 	});
 	// =================================================//
 
 	js_board_name_input.on('focus', function () {
-		console.log(`見本： ${board_header_btn.width()}`);
 		js_board_name_input.css('width', board_editing_target.width());
-		console.log(`実際： ${js_board_name_input.width()}`);
 	});
 
 	// テキストフォームの幅を文字列の長さになるようにする
@@ -471,23 +467,25 @@
 		form.css('padding', '0 12px');
 		const js_form_width = form.width();
 
-		console.log(js_form_width);
-		console.log(`実際： ${js_board_name_input.width()}`);
-
 		js_board_name_input.css('width', `${js_form_width}px`);
 		form.remove();
 	});
 
-	// ========focus外れたとき、valueが['']だったらもとのタイトルに戻す=======//
-	function input_empty_before_value() {
-		if (js_board_name_input.val() != '') {
-			board_editing_target.text(js_board_name_input.val());
-			js_board_name_input.css('display', 'none');
-		} else {
+	// ========focus外れたとき、valueが['']だったらもとのタイトルに戻し、変更あれば更新=======//
+
+	js_board_name_input.blur(() => {
+		const beforeTitle = $('.board-editing-target');
+		const afterTitle = $('.js-board-name-input');
+		if ( afterTitle.val() == beforeTitle.text() || afterTitle.val() == '' ){
 			js_board_name_input.val(board_editing_target.text());
 			js_board_name_input.css('display', 'none');
+		} else {
+			const board_title_update_btn = $('.board-title-update-url');
+			board_editing_target.text(afterTitle.val());
+			js_board_name_input.css('display', 'none');
+			board_title_update_btn.click();
 		}
-	}
+	});
 	// =================================================
 
 	// ================================================//

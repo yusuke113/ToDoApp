@@ -1,8 +1,11 @@
 <div class="board-header">
   <div class="board-header-btn js-rename-board">
+  <%= form_with model: @board, method: :put, html: { class: 'board-title-update-form' } do |f| %>
     <span class="board-editing-target"><%= @board.title %></span>
-    <input class="board-name-input js-board-name-input" aria-label="<%= @board.title %>" spellcheck="false" dir="auto"
-      maxlength="512" value="<%= @board.title %>">
+    
+    <%= f.text_field :title, class: 'board-name-input js-board-name-input', spellcheck: 'false', autocomplete: 'off', dir: 'auto', maxlength: '512', value:@board.title %>
+    <%= f.submit '保存', { class: 'board-title-update-url' } %>
+  <% end %>
   </div>
   <div class="board-warnings hidden"></div>
   <div class="board-header-btns mod-right">
@@ -12,3 +15,4 @@
     </div>
   </div>
 </div>
+

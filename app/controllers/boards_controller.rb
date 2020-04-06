@@ -24,6 +24,17 @@ class BoardsController < ApplicationController
   end
 
   def update
+    @board = Board.find(params[:id])
+    respond_to do |format|
+      if @board.update(board_params)
+        format.html { redirect_to @board }
+        format.json { render :show, status: :no_content }
+        format.js
+      else
+        format.html { redirect_to @board }
+        format.json { render :show, status: :internal_server_error }
+      end
+    end
   end
 
   def destroy
