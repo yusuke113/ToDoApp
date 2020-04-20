@@ -96,7 +96,7 @@
 				content: attr(aria-label);
 			}
 		}
-		
+
 		.board-title-update-url {
 			display: none;
 		}
@@ -150,6 +150,7 @@
 	bottom: 0;
 	right: 0;
 	top: 0;
+	height: 114px;
 	z-index: 20;
 	transform: translateX(260px);
 	transition: all 0.1s ease-in 0s;

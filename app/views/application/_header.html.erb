@@ -12,7 +12,29 @@
   </div>
   <div class="navbar-right">
     <div class="user-edit">
-      <%= link_to icon 'fa', 'user-circle', class: 'user-edit-icon' %>
+      <i class="fa fa-user-circle user-edit-icon"></i>
+    </div>
+  </div>
+  <div class="user-menu hidden">
+    <div class="user-menu-container">
+      <div class="user-menu-tab-content">
+        <div class="user-menu-header">
+          <div class="user-menu-header-content">
+            <h3 class="user-menu-header-title"><%= current_user.username %></h3>
+            <span class="user-menu-header-close-button">×</span>
+          </div>
+          <hr class="user-menu-header-divider">
+        </div>
+        <div class="user-menu-content">
+          <div class="user-menu-content-frame">
+            <ul class="user-menu-navigation">
+              <li class="user-menu-navigation-item">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'user-menu-navigation-item-link', data: { confirm: "ログアウトしますか？" } %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

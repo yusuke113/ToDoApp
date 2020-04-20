@@ -1,20 +1,21 @@
 class BoardsController < ApplicationController
+  before_action :logged_in_user
   before_action :set_target_board, only: %i[show edit update destroy]
 
   def index
-    @boards = Board.all
+    @boards = current_user.boards
     @board = Board.new
   end
 
   def create
     board = Board.new(board_params)
+    board.user_id = current_user.id
     if board.save
-      flash[:notice] = "「#{board.title}」のボードを作成しました"
       redirect_to board
     else
       render 'boards/index', flash: {
         board: board,
-        error_messages: board.errors.full_messages
+        alert: board.errors.full_messages
       }
     end
   end
@@ -39,7 +40,7 @@ class BoardsController < ApplicationController
 
   def destroy
     @board.destroy
-    redirect_to root_path, flash: { notice: "「#{@board.title}の掲示板が削除されました」" }
+    redirect_to root_path, flash: { notice: "【#{@board.title}】のボードが削除されました" }
   end
 
   private
@@ -49,7 +50,8 @@ class BoardsController < ApplicationController
     end
 
     def set_target_board
-      @board = Board.find(params[:id])
+      @board = Board.find_by(id: params[:id])
+      redirect_to root_url if @board.nil?
     end
 
 

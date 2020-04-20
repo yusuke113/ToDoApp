@@ -13,8 +13,21 @@
 </head>
 
 <body>
+  <% if user_signed_in? %>
   <%= render 'header' %>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-notice">
+      <p class="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <p class="alert"><%= "alert" %></p>
+    </div>
+  <% end %>
   <%= yield %>
 </body>
+<%= javascript_pack_tag 'boards/board' %>
 
 </html>

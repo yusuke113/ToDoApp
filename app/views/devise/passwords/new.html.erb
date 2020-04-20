@@ -1,0 +1,31 @@
+<div class="sign-in-background" style="text-align: center;">
+  <div class="todoapp-main-logo">
+    <h1 class="todoapp-logo">ToDoApp</h1>
+  </div>
+
+  <section class="inner-section">
+    <div class="section-wrapper">
+      <div class="account-form">
+        <h1><%= t('devise.passwords.new.forgot_your_password') %></h1>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="login-password-container-email">
+          <div class="email-password-login">
+            <div class="email-password">
+              <div class="field">
+                <%#= f.label :email %>
+                <%= f.email_field :email, class: "form-field",  autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力" %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: "account-button" %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+  </section>
+</div>

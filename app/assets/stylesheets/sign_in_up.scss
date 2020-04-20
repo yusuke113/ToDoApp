@@ -1,0 +1,104 @@
+body {
+	background-color: #f9fafc;
+}
+
+.sign-in-background {
+	height: 100%;
+	background-color: #f9fafc;
+	z-index: 100;
+}
+
+.todoapp-main-logo {
+	height: 43px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.todoapp-logo {
+	font-size: 32px;
+  font-weight: bold;
+  color: #f13866;
+	line-height: 42px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.inner-section {
+	text-align: center;
+	width: 100%;
+	padding: 0px;
+	overflow: visible;
+	margin-bottom: 30px;
+
+	.section-wrapper {
+		max-width: 400px;
+		margin: 0 auto;
+	}
+}
+
+.account-form {
+	background-color: #ffffff;
+	border-radius: 3px;
+	padding: 25px 40px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+	max-width: 585px;
+	margin: 0 auto;
+	position: relative;
+
+	h1 {
+		text-align: center;
+		color: #5e6c84;
+		font-size: 16px;
+		letter-spacing: -0.01em;
+		line-height: 28px;
+		margin-top: 10px;
+		margin-bottom: 25px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #0052CC;
+    font-size: 14px;
+  }
+}
+
+.form-field {
+  width: 100%;
+	font-size: 14px;
+	background-color: #fafbfc;
+	border: 2px solid #dfe1e6;
+	box-sizing: border-box;
+	border-radius: 3px;
+  height: 44px;
+  margin: 0 0 1.2em;
+  padding: .5em;
+  transition: background-color .2s ease-in-out 0s,border-color .2s ease-in-out 0s;
+}
+
+.account-button {
+  user-select: none;
+  text-align: center;
+  width: 100%;
+  padding: .6em 1.3em;
+  background: #5AAC44;
+  box-shadow: none;
+  border-radius: .5em;
+  font-weight: bold;
+  color: #fff;
+
+  &:hover {
+    background: #61BD4F;
+  }
+}
+
+.link-underline {
+  display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid hsl(0,0%,80%);
+    margin: 25px 0 14px 0;
+    padding: 0;
+}

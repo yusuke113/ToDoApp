@@ -35,13 +35,15 @@ $(document).ready(function () {
 	// ================================================//
 
 	// ================================================//
-	// 					  List[name]テキストエリアの設定	   			  //
+	// 					  List[name]テキストエリアの設定	   			   //
 	// ================================================//
 	$('.list-header-name').on('input', () => {
 		// ===========テキストエリアの幅を行数で変える========//
 
 		// ターゲットのテキストエリア要素を取得する
 		const target = $('.list-header-name:focus');
+
+		const before_target_title = target.prev().val();
 
 		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
 		target.css('height', '20px');
@@ -54,49 +56,44 @@ $(document).ready(function () {
 		}
 		// テキストエリアの高さを設定する
 		target.css('height', `${wSclollHeight}px`);
-		// =================================================//
-
-		// ========Enter押したらテキストエリアのfocus外す=======//
-
-		target.on('keydown', e => {
-			if (e.keyCode == 13) {
-				e.preventDefault();
-				target.blur();
-			}
-		});
-		// =================================================//
 	});
 
-	$('.list-card-composer-textarea').on('input', () => {
-		// ===========テキストエリアの幅を行数で変える========//
+	$('.list-header-name').on('keydown', (e) => {
+		const target = $('.list-header-name:focus');
+		const list_header_title = target.prev();
+		const targetForm = target.parents('.list-name-update-form');
 
-		// ターゲットのテキストエリア要素を取得する
-		const card_create_btn = $('.card-create-btn');
-		const target = $('.list-card-composer-textarea:focus');
-
-		// 一旦テキストエリアを小さくしてスクロールバー（縦の長さを取得）
-		target.css('height', '20px');
-		// 1行の長さを取得する
-		var wSclollHeight = parseInt(target.get(0).scrollHeight - 2);
-		var wLineH = parseInt(target.css('lineHeight').replace(/px/, ''));
-		// 最低1行の表示エリアにする
-		if (wSclollHeight < wLineH * 2) {
-			wSclollHeight = wLineH * 2;
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			target.blur();
 		}
-		// テキストエリアの高さを設定する
-		target.css('height', `${wSclollHeight}px`);
-		// =================================================//
-
-		// ========Enter押したらテキストエリアのfocus外す=======//
-
-		target.on('keydown', e => {
-			if (e.keyCode == 13) {
-				e.preventDefault();
-				card_create_btn.click();
-				textdelete();
-			}
-		});
 	});
+
+	$('.list-header-name').blur((e) => {
+		// eventのパラメーターから対象のidを取得してtargetに代入
+		const target = $(`#${e.target.attributes[1].value}`);
+		const list_header_title = target.prev();
+		const targetForm = target.parents('.list-name-update-form');
+
+		if (list_header_title.text() == target.val() || target.val() == '') {
+			target.val(list_header_title.text());
+		} else {
+			targetForm.find('.list-name-update-url').click();
+		}
+	});
+
+	// 編集エリア以外クリックで閉じる
+	$(document).on('click touchend', function (event) {
+		if (!$(event.target).closest('.list-header-name').length) {
+			// テキストエリアのfocus外す
+			const target = $('.list-header-name:focus');
+			const list_header_title = target.prev();
+			const targetForm = target.parents('.list-name-update-form');
+
+			target.blur();
+		}
+	});
+	
 	// =================================================//
 
 	<%# // ================================================//
@@ -229,7 +226,7 @@ $(document).ready(function () {
 	//                     カード追加                     //
 	// ================================================//
 
-	$('.open-card-composer').click(function() {
+	$('.open-card-composer').click(function () {
 		const open_card_composer = $(this);
 		const list_cards = $(this).closest('.list-cards');
 		const js_card_form = list_cards.find('.js-card-form');
@@ -240,16 +237,13 @@ $(document).ready(function () {
 		const card_create_btn = card_composer.find('.card-create-btn');
 
 		textdelete();
+		list_card_composer_textarea.focus();
 
 		// カード追加ボタンを決してフォームを表示
 		$('.card-composer').addClass('hidden');
-		$('.open-card-composer')
-			.parent()
-			.removeClass('hidden');
+		$('.open-card-composer').parent().removeClass('hidden');
 		card_composer.removeClass('hidden');
-		$(this)
-			.parent()
-			.addClass('hidden');
+		$(this).parent().addClass('hidden');
 		list_card_composer_textarea.focus().val('');
 		//
 
@@ -266,24 +260,30 @@ $(document).ready(function () {
 		});
 		//
 
-		js_card_form.submit(function(e) {
+		console.log(card_create_btn);
+		console.log(js_card_form);
+
+		js_card_form.submit(function (e) {
 			e.preventDefault();
 			if (list_card_composer_textarea.val() == '') {
-			  console.log('list empty');
 				return false;
+			} else {
+				console.log('a');
 			}
 		});
 		//
 		// 改行不可
-		list_card_composer_textarea.on('keydown', e => {
+		list_card_composer_textarea.on('keydown', (e) => {
 			if (e.keyCode == 13) {
 				e.preventDefault();
 				if (list_card_composer_textarea.val() == '') {
 					return false;
+				} else {
+					card_create_btn.click();
+					console.log('kkk');
 				}
 			}
 		});
-
 	});
 
 	// ================================================//

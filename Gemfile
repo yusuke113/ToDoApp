@@ -22,10 +22,15 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'rails-i18n', '~> 6.0.0'
+
 gem "nokogiri", ">= 1.10.8"
 gem "loofah", ">= 2.3.1"
 gem "rack", ">= 2.0.8"
 gem "actionview", ">= 5.2.4.2"
+gem "devise"
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
