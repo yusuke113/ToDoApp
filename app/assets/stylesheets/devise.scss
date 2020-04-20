@@ -65,6 +65,25 @@ body {
   }
 }
 
+// エラーメッセージ
+#error_explanation {
+
+	h2 {
+		text-align: left;
+		font-size: 16px;
+	}
+
+	ul {
+		padding: 0;
+	}
+
+	li {
+		text-align: left;
+		font-size: 14px;
+		color: red;
+	}
+}
+
 .form-field {
   width: 100%;
 	font-size: 14px;

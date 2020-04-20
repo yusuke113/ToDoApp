@@ -17,13 +17,13 @@
   <%= render 'header' %>
   <% end %>
   <% if flash[:notice] %>
-    <div class="alert alert-notice">
-      <p class="notice"><%= notice %></p>
+    <div class="info info-notice">
+      <p class="notice"><%= flash[:notice] %></p>
     </div>
   <% end %>
   <% if flash[:alert] %>
-    <div class="alert alert-danger">
-      <p class="alert"><%= "alert" %></p>
+    <div class="info info-danger">
+      <p class="alert"><%= flash[:alert] %></p>
     </div>
   <% end %>
   <%= yield %>

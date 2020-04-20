@@ -35,7 +35,7 @@ li {
 }
 
 // アラート
-.alert {
+.info {
 	position: relative;
 	padding: 0.75rem 1.25rem;
 	margin-bottom: 1rem;
@@ -43,13 +43,13 @@ li {
 	border-radius: 0.25rem;
 }
 
-.alert-notice {
+.info-notice {
 	color: #0c5460;
 	background-color: #d1ecf1;
 	border-color: #bee5eb;
 }
 
-.alert-danger {
+.info-danger {
 	color: #ff4c10;
 	background-color: #fce8e6;
 	border-color: #f5c6cb;
