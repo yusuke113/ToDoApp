@@ -22,5 +22,7 @@ module App
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
+    config.assets.initialize_on_precompile = false
+
   end
 end
