@@ -1,0 +1,5 @@
+mysql://b96f7ba27d348d:69cbf488@us-cdbr-iron-east-01.cleardb.net/heroku_84db86e2ceb7cc7?reconnect=true
+
+mysql -u b96f7ba27d348d -p69cbf488 -h us-cdbr-iron-east-01.cleardb.net
+
+use heroku_84db86e2ceb7cc7
