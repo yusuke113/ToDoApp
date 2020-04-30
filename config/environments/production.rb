@@ -118,22 +118,22 @@ Rails.application.configure do
   
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.smtp_settings = {
+  # config.action_mailer.smtp_settings = {
 
-    :user_name => Rails.application.credentials.sendgrid[:SENDGRID_USERNAME],
+  #   :user_name => Rails.application.credentials.sendgrid[:SENDGRID_USERNAME],
 
-    :password => Rails.application.credentials.sendgrid[:SENDGRID_PASSWORD],
+  #   :password => Rails.application.credentials.sendgrid[:SENDGRID_PASSWORD],
 
-    :domain => "herokuapp.com",
+  #   :domain => "herokuapp.com",
 
-    :address => "smtp.sendgrid.net",
+  #   :address => "smtp.sendgrid.net",
 
-    :port => 587,
+  #   :port => 587,
 
-    :authentication => :plain,
+  #   :authentication => :plain,
 
-    :enable_starttls_auto => true
+  #   :enable_starttls_auto => true
 
-  }
+  # }
 
 end
