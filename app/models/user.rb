@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable #:confirmable sendgridが凍結したので一時的にメール認証OFF
   has_many :boards, dependent: :destroy
 
   validates :username, presence: true, length: { maximum: 30 }
