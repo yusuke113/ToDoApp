@@ -1,11 +1,5 @@
 # Trelloクローンアプリ(ToDoApp)
-<img src="https://img.shields.io/badge/-HTML5-333.svg?logo=html5&style=flat">
-<img src="https://img.shields.io/badge/-CSS3-1572B6.svg?logo=css3&style=flat">
-<img src="https://img.shields.io/badge/-Ruby-CC342D.svg?logo=ruby&style=flat">
-<img src="https://img.shields.io/badge/Javascript-276DC3.svg?logo=javascript&style=flat">
-<img src="https://img.shields.io/badge/-Rails-CC0000.svg?s&style=flat">
-<img src="https://img.shields.io/badge/-jQuery-0769AD.svg?logo=jquery&style=flat">
-<img src="https://img.shields.io/badge/-Docker-EEE.svg?logo=docker&style=flat">
+<img src="https://img.shields.io/badge/-HTML5-333.svg?logo=html5&style=flat"> <img src="https://img.shields.io/badge/-CSS3-1572B6.svg?logo=css3&style=flat"> <img src="https://img.shields.io/badge/-Ruby-CC342D.svg?logo=ruby&style=flat"> <img src="https://img.shields.io/badge/Javascript-276DC3.svg?logo=javascript&style=flat"> <img src="https://img.shields.io/badge/-Rails-CC0000.svg?s&style=flat"> <img src="https://img.shields.io/badge/-jQuery-0769AD.svg?logo=jquery&style=flat"> <img src="https://img.shields.io/badge/-Docker-EEE.svg?logo=docker&style=flat">
 
   Trelloのクローンアプリを作成しています。
  
