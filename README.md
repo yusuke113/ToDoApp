@@ -19,7 +19,7 @@
  
 - Docker
  
-## インストール
+## 起動方法
  
 ```
 $ git clone https://github.com/yusuke113/ToDoApp.git
